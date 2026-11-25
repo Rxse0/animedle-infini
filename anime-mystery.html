@@ -34,9 +34,9 @@ main{max-width:770px;margin:auto;padding:40px 0 36px}
 .topline strong{font-weight:850;color:#d8dae1}
 .media{position:relative;overflow:hidden;background:#191c22;border:1px solid #343640;border-radius:16px;aspect-ratio:16/9;isolation:isolate}
 .media::after{content:"";inset:0;position:absolute;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 60px #0009}
-.media img,.media iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(19px) saturate(.72) brightness(.76);transform:scale(1.13);transition:filter .5s,transform .5s}
-.media[data-hint="1"] img,.media[data-hint="1"] iframe{filter:blur(11px) saturate(.86) brightness(.86);transform:scale(1.08)}
-.media[data-hint="2"] img,.media[data-hint="2"] iframe{filter:blur(5px) saturate(.96);transform:scale(1.04)}
+.media img,.media iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(10px) saturate(.86) brightness(.88);transform:scale(1.08);transition:filter .5s,transform .5s}
+.media[data-hint="1"] img,.media[data-hint="1"] iframe{filter:blur(5px) saturate(.94) brightness(.95);transform:scale(1.04)}
+.media[data-hint="2"] img,.media[data-hint="2"] iframe{filter:blur(1.5px) saturate(1);transform:scale(1.01)}
 .media[data-revealed="true"] img,.media[data-revealed="true"] iframe{filter:none;transform:scale(1)}
 .media iframe{border:0;pointer-events:none;z-index:1}
 .media .film{display:grid;place-items:center;position:absolute;z-index:2;top:12px;left:12px;background:#08090cba;border:1px solid #ffffff2b;color:#fff;font-size:10px;letter-spacing:1px;font-weight:800;padding:6px 10px;border-radius:8px}
