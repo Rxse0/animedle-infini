@@ -86,6 +86,14 @@ dialog{padding:0;max-width:560px;width:calc(100% - 28px);max-height:calc(100dvh 
 body .game-area{scroll-margin-top:14px}
 @media(max-width:650px){.char-intro{padding:24px 0 16px}.char-nav{gap:6px;margin-bottom:16px}.char-tab{font-size:10px;min-height:46px;padding:6px 3px}.char-intro h1{font-size:clamp(31px,8vw,48px)}}
 
+
+/* Quatrième univers : Hunter × Hunter */
+body[data-world="hxh"]{--accent:#7fd2a1;--accent-bright:#a8edd2;--tint:127,210,161}
+body[data-world="hxh"] .hero h1 em{background-image:linear-gradient(110deg,#d9ffe4,#7fd2a1 65%,#e2a6e7)}
+.char-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+body[data-world="hxh"] .char-tab.active{border-color:#7fd2a1;background:#29513b5e}
+@media(max-width:770px){.char-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.char-tab{min-height:47px;font-size:11px}}
+
 </style>
   
   
@@ -112,6 +120,7 @@ body .game-area{scroll-margin-top:14px}
         <button class="char-tab" type="button" data-switch="naruto" role="tab" aria-selected="true" aria-controls="gameArea">🌀 Naruto</button>
         <button class="char-tab" type="button" data-switch="aot" role="tab" aria-selected="false" aria-controls="gameArea">⚔️ Attack on Titan</button>
         <button class="char-tab" type="button" data-switch="tokyo" role="tab" aria-selected="false" aria-controls="gameArea">🌺 Tokyo Ghoul</button>
+        <button class="char-tab" type="button" data-switch="hxh" role="tab" aria-selected="false" aria-controls="gameArea">🕷️ Hunter × Hunter</button>
       </nav>
       <section class="game-area" id="gameArea">
         <div class="section-kicker"><span class="round-label">02</span> LA PARTIE <span class="thin-line"></span><span class="live-tag"><span class="pulse-dot"></span> EN COURS</span></div>
@@ -175,6 +184,677 @@ body .game-area{scroll-margin-top:14px}
   indiquent une période de première apparition approximative.
 */
 const DATA = {
+  hxh: {
+    title: 'Hunter × Hunter', subtitle: 'Hunters, Nen et Brigade fantôme',
+    columns: [
+      {key:'gender',label:'Genre'},
+      {key:'group',label:'Affiliation'},
+      {key:'nen',label:'Type de Nen'},
+      {key:'role',label:'Rôle'},
+      {key:'power',label:'Capacité'},
+      {key:'debut',label:'Apparition'}
+    ],
+    ordered:{debut:["Examen Hunter","Famille Zoldyck","Tour céleste","Yorknew","Greed Island","Fourmis-chimères","Élection"]},
+    characters:[
+          [
+                "Gon Freecss",
+                "Homme",
+                "Association Hunter",
+                "Renforcement",
+                "Protagoniste",
+                "Jajanken",
+                "Examen Hunter"
+          ],
+          [
+                "Killua Zoldyck",
+                "Homme",
+                "Famille Zoldyck",
+                "Transmutation",
+                "Protagoniste",
+                "Électricité",
+                "Examen Hunter"
+          ],
+          [
+                "Kurapika",
+                "Homme",
+                "Clan Kurta",
+                "Matérialisation",
+                "Hunter",
+                "Chaînes",
+                "Examen Hunter"
+          ],
+          [
+                "Leorio Paradinight",
+                "Homme",
+                "Association Hunter",
+                "Émission",
+                "Hunter",
+                "Coup à distance",
+                "Examen Hunter"
+          ],
+          [
+                "Hisoka Morow",
+                "Homme",
+                "Indépendant",
+                "Transmutation",
+                "Magicien",
+                "Bungee Gum",
+                "Examen Hunter"
+          ],
+          [
+                "Illumi Zoldyck",
+                "Homme",
+                "Famille Zoldyck",
+                "Manipulation",
+                "Assassin",
+                "Aiguilles",
+                "Examen Hunter"
+          ],
+          [
+                "Isaac Netero",
+                "Homme",
+                "Association Hunter",
+                "Renforcement",
+                "Président",
+                "Bodhisattva",
+                "Examen Hunter"
+          ],
+          [
+                "Tonpa",
+                "Homme",
+                "Candidats Hunter",
+                "Non révélé",
+                "Candidat",
+                "Sabotage",
+                "Examen Hunter"
+          ],
+          [
+                "Hanzo",
+                "Homme",
+                "Association Hunter",
+                "Transmutation",
+                "Ninja",
+                "Arts ninjas",
+                "Examen Hunter"
+          ],
+          [
+                "Pokkle",
+                "Homme",
+                "Association Hunter",
+                "Émission",
+                "Hunter",
+                "Flèches de Nen",
+                "Examen Hunter"
+          ],
+          [
+                "Ponzu",
+                "Femme",
+                "Candidats Hunter",
+                "Non révélé",
+                "Candidate",
+                "Abeilles",
+                "Examen Hunter"
+          ],
+          [
+                "Satotz",
+                "Homme",
+                "Association Hunter",
+                "Non révélé",
+                "Examinateur",
+                "Course",
+                "Examen Hunter"
+          ],
+          [
+                "Menchi",
+                "Femme",
+                "Association Hunter",
+                "Non révélé",
+                "Examinatrice",
+                "Cuisine",
+                "Examen Hunter"
+          ],
+          [
+                "Buhara",
+                "Homme",
+                "Association Hunter",
+                "Non révélé",
+                "Examinateur",
+                "Gastronomie",
+                "Examen Hunter"
+          ],
+          [
+                "Bodoro",
+                "Homme",
+                "Candidats Hunter",
+                "Non révélé",
+                "Candidat",
+                "Combat",
+                "Examen Hunter"
+          ],
+          [
+                "Kikyo Zoldyck",
+                "Femme",
+                "Famille Zoldyck",
+                "Non révélé",
+                "Assassine",
+                "Surveillance",
+                "Famille Zoldyck"
+          ],
+          [
+                "Silva Zoldyck",
+                "Homme",
+                "Famille Zoldyck",
+                "Émission",
+                "Assassin",
+                "Orbes d'énergie",
+                "Famille Zoldyck"
+          ],
+          [
+                "Milluki Zoldyck",
+                "Homme",
+                "Famille Zoldyck",
+                "Manipulation",
+                "Assassin",
+                "Technologie",
+                "Famille Zoldyck"
+          ],
+          [
+                "Kalluto Zoldyck",
+                "Homme",
+                "Famille Zoldyck",
+                "Manipulation",
+                "Assassin",
+                "Papier",
+                "Famille Zoldyck"
+          ],
+          [
+                "Gotoh",
+                "Homme",
+                "Maison Zoldyck",
+                "Non révélé",
+                "Majordome",
+                "Pièces",
+                "Famille Zoldyck"
+          ],
+          [
+                "Canary",
+                "Femme",
+                "Maison Zoldyck",
+                "Non révélé",
+                "Garde",
+                "Bâton",
+                "Famille Zoldyck"
+          ],
+          [
+                "Zeno Zoldyck",
+                "Homme",
+                "Famille Zoldyck",
+                "Émission",
+                "Assassin",
+                "Dragon de Nen",
+                "Yorknew"
+          ],
+          [
+                "Wing",
+                "Homme",
+                "Association Hunter",
+                "Non révélé",
+                "Enseignant",
+                "Enseignement du Nen",
+                "Tour céleste"
+          ],
+          [
+                "Zushi",
+                "Homme",
+                "Association Hunter",
+                "Manipulation",
+                "Apprenti",
+                "Arts martiaux",
+                "Tour céleste"
+          ],
+          [
+                "Kastro",
+                "Homme",
+                "Indépendant",
+                "Renforcement",
+                "Combattant",
+                "Double",
+                "Tour céleste"
+          ],
+          [
+                "Gido",
+                "Homme",
+                "Indépendant",
+                "Non révélé",
+                "Combattant",
+                "Toupies",
+                "Tour céleste"
+          ],
+          [
+                "Riehlvelt",
+                "Homme",
+                "Indépendant",
+                "Non révélé",
+                "Combattant",
+                "Électricité",
+                "Tour céleste"
+          ],
+          [
+                "Machi Komacine",
+                "Femme",
+                "Brigade fantôme",
+                "Transmutation",
+                "Membre",
+                "Fils de Nen",
+                "Tour céleste"
+          ],
+          [
+                "Chrollo Lucilfer",
+                "Homme",
+                "Brigade fantôme",
+                "Spécialisation",
+                "Chef",
+                "Vol de capacités",
+                "Yorknew"
+          ],
+          [
+                "Nobunaga Hazama",
+                "Homme",
+                "Brigade fantôme",
+                "Renforcement",
+                "Membre",
+                "Sabre",
+                "Yorknew"
+          ],
+          [
+                "Feitan Portor",
+                "Homme",
+                "Brigade fantôme",
+                "Transmutation",
+                "Membre",
+                "Pain Packer",
+                "Yorknew"
+          ],
+          [
+                "Phinks Magcub",
+                "Homme",
+                "Brigade fantôme",
+                "Renforcement",
+                "Membre",
+                "Ripper Cyclotron",
+                "Yorknew"
+          ],
+          [
+                "Shizuku Murasaki",
+                "Femme",
+                "Brigade fantôme",
+                "Matérialisation",
+                "Membre",
+                "Aspirateur",
+                "Yorknew"
+          ],
+          [
+                "Franklin Bordeau",
+                "Homme",
+                "Brigade fantôme",
+                "Émission",
+                "Membre",
+                "Projectiles de Nen",
+                "Yorknew"
+          ],
+          [
+                "Pakunoda",
+                "Femme",
+                "Brigade fantôme",
+                "Spécialisation",
+                "Membre",
+                "Lecture de mémoire",
+                "Yorknew"
+          ],
+          [
+                "Shalnark",
+                "Homme",
+                "Brigade fantôme",
+                "Manipulation",
+                "Membre",
+                "Contrôle",
+                "Yorknew"
+          ],
+          [
+                "Uvogin",
+                "Homme",
+                "Brigade fantôme",
+                "Renforcement",
+                "Membre",
+                "Big Bang Impact",
+                "Yorknew"
+          ],
+          [
+                "Kortopi",
+                "Homme",
+                "Brigade fantôme",
+                "Matérialisation",
+                "Membre",
+                "Copies",
+                "Yorknew"
+          ],
+          [
+                "Bonolenov Ndongo",
+                "Homme",
+                "Brigade fantôme",
+                "Matérialisation",
+                "Membre",
+                "Musique",
+                "Yorknew"
+          ],
+          [
+                "Neon Nostrade",
+                "Femme",
+                "Mafia Nostrade",
+                "Spécialisation",
+                "Voyante",
+                "Prédictions",
+                "Yorknew"
+          ],
+          [
+                "Light Nostrade",
+                "Homme",
+                "Mafia Nostrade",
+                "Aucun",
+                "Chef mafieux",
+                "Négoce",
+                "Yorknew"
+          ],
+          [
+                "Melody",
+                "Femme",
+                "Mafia Nostrade",
+                "Émission",
+                "Garde du corps",
+                "Musique",
+                "Yorknew"
+          ],
+          [
+                "Basho",
+                "Homme",
+                "Mafia Nostrade",
+                "Non révélé",
+                "Garde du corps",
+                "Poésie",
+                "Yorknew"
+          ],
+          [
+                "Squala",
+                "Homme",
+                "Mafia Nostrade",
+                "Manipulation",
+                "Garde du corps",
+                "Chiens",
+                "Yorknew"
+          ],
+          [
+                "Biscuit Krueger",
+                "Femme",
+                "Association Hunter",
+                "Transmutation",
+                "Mentor",
+                "Transformation",
+                "Greed Island"
+          ],
+          [
+                "Genthru",
+                "Homme",
+                "Groupe Genthru",
+                "Matérialisation",
+                "Antagoniste",
+                "Explosifs de Nen",
+                "Greed Island"
+          ],
+          [
+                "Razor",
+                "Homme",
+                "Greed Island",
+                "Émission",
+                "Maître de jeu",
+                "Balle au prisonnier",
+                "Greed Island"
+          ],
+          [
+                "Tsezguerra",
+                "Homme",
+                "Association Hunter",
+                "Non révélé",
+                "Hunter",
+                "Saut",
+                "Greed Island"
+          ],
+          [
+                "Goreinu",
+                "Homme",
+                "Association Hunter",
+                "Manipulation",
+                "Hunter",
+                "Gorilles",
+                "Greed Island"
+          ],
+          [
+                "Abengane",
+                "Homme",
+                "Greed Island",
+                "Matérialisation",
+                "Exorciste",
+                "Exorcisme",
+                "Greed Island"
+          ],
+          [
+                "Kite",
+                "Homme",
+                "Association Hunter",
+                "Matérialisation",
+                "Hunter",
+                "Crazy Slots",
+                "Fourmis-chimères"
+          ],
+          [
+                "Morel Mackernasey",
+                "Homme",
+                "Association Hunter",
+                "Manipulation",
+                "Hunter",
+                "Fumée",
+                "Fourmis-chimères"
+          ],
+          [
+                "Knov",
+                "Homme",
+                "Association Hunter",
+                "Émission",
+                "Hunter",
+                "Portails",
+                "Fourmis-chimères"
+          ],
+          [
+                "Knuckle Bine",
+                "Homme",
+                "Association Hunter",
+                "Matérialisation",
+                "Hunter",
+                "Potclean",
+                "Fourmis-chimères"
+          ],
+          [
+                "Shoot McMahon",
+                "Homme",
+                "Association Hunter",
+                "Manipulation",
+                "Hunter",
+                "Mains flottantes",
+                "Fourmis-chimères"
+          ],
+          [
+                "Palm Siberia",
+                "Femme",
+                "Association Hunter",
+                "Renforcement",
+                "Hunter",
+                "Voyance",
+                "Fourmis-chimères"
+          ],
+          [
+                "Meleoron",
+                "Homme",
+                "Fourmis-chimères",
+                "Non révélé",
+                "Allié",
+                "Invisibilité",
+                "Fourmis-chimères"
+          ],
+          [
+                "Ikalgo",
+                "Homme",
+                "Fourmis-chimères",
+                "Renforcement",
+                "Allié",
+                "Possession",
+                "Fourmis-chimères"
+          ],
+          [
+                "Meruem",
+                "Homme",
+                "Fourmis-chimères",
+                "Émission",
+                "Roi",
+                "Absorption",
+                "Fourmis-chimères"
+          ],
+          [
+                "Neferpitou",
+                "Non précisé",
+                "Fourmis-chimères",
+                "Spécialisation",
+                "Garde royal",
+                "Doctor Blythe",
+                "Fourmis-chimères"
+          ],
+          [
+                "Shaiapouf",
+                "Homme",
+                "Fourmis-chimères",
+                "Manipulation",
+                "Garde royal",
+                "Hypnose",
+                "Fourmis-chimères"
+          ],
+          [
+                "Menthuthuyoupi",
+                "Homme",
+                "Fourmis-chimères",
+                "Transmutation",
+                "Garde royal",
+                "Métamorphose",
+                "Fourmis-chimères"
+          ],
+          [
+                "Komugi",
+                "Femme",
+                "Palais royal",
+                "Aucun",
+                "Joueuse de Gungi",
+                "Gungi",
+                "Fourmis-chimères"
+          ],
+          [
+                "Colt",
+                "Homme",
+                "Fourmis-chimères",
+                "Non révélé",
+                "Chef d'escadron",
+                "Tactique",
+                "Fourmis-chimères"
+          ],
+          [
+                "Cheetu",
+                "Homme",
+                "Fourmis-chimères",
+                "Matérialisation",
+                "Chef d'escadron",
+                "Vitesse",
+                "Fourmis-chimères"
+          ],
+          [
+                "Leol",
+                "Homme",
+                "Fourmis-chimères",
+                "Spécialisation",
+                "Chef d'escadron",
+                "Emprunt de capacités",
+                "Fourmis-chimères"
+          ],
+          [
+                "Zazan",
+                "Femme",
+                "Fourmis-chimères",
+                "Manipulation",
+                "Chef d'escadron",
+                "Transformation",
+                "Fourmis-chimères"
+          ],
+          [
+                "Welfin",
+                "Homme",
+                "Fourmis-chimères",
+                "Matérialisation",
+                "Officier",
+                "Missiles",
+                "Fourmis-chimères"
+          ],
+          [
+                "Ging Freecss",
+                "Homme",
+                "Association Hunter",
+                "Émission",
+                "Hunter",
+                "Imitation",
+                "Élection"
+          ],
+          [
+                "Pariston Hill",
+                "Homme",
+                "Association Hunter",
+                "Non révélé",
+                "Zodiaque",
+                "Stratégie",
+                "Élection"
+          ],
+          [
+                "Cheadle Yorkshire",
+                "Femme",
+                "Association Hunter",
+                "Non révélé",
+                "Zodiaque",
+                "Médecine",
+                "Élection"
+          ],
+          [
+                "Mizaistom Nana",
+                "Homme",
+                "Association Hunter",
+                "Non révélé",
+                "Zodiaque",
+                "Justice",
+                "Élection"
+          ],
+          [
+                "Alluka Zoldyck",
+                "Femme",
+                "Famille Zoldyck",
+                "Non révélé",
+                "Famille Zoldyck",
+                "Souhaits de Nanika",
+                "Élection"
+          ]
+    ]
+  },
   naruto: {
     title: 'Naruto', subtitle: 'Le monde des shinobis',
     columns: [
@@ -402,7 +1082,8 @@ const DATA = {
 const HEADERS = {
   naruto:['name','gender','village','clan','rank','skill','debut'],
   aot:['name','gender','faction','origin','titan','status','debut'],
-  tokyo:['name','gender','species','group','kagune','role','debut']
+  tokyo:['name','gender','species','group','kagune','role','debut'],
+  hxh:['name','gender','group','nen','role','power','debut']
 };
 for(const [world, config] of Object.entries(DATA)) {
   config.characters = config.characters.map(row => Object.fromEntries(HEADERS[world].map((key,i)=>[key,row[i]])));
@@ -414,7 +1095,7 @@ for(const [world, config] of Object.entries(DATA)) {
 (() => {
   'use strict';
   const STORAGE_KEY = 'animedle-infinity-v1';
-  const WORLD_KEYS = ['naruto', 'aot', 'tokyo'];
+  const WORLD_KEYS = ['naruto', 'aot', 'tokyo', 'hxh'];
   const $ = id => document.getElementById(id);
   const byName = (world, name) => DATA[world].characters.find(c => c.name === name);
   // Surnoms les plus connus : les joueurs peuvent saisir « Haise » ou « Jason ».
@@ -428,7 +1109,7 @@ for(const [world, config] of Object.entries(DATA)) {
     'Jûzô Suzuya':['Juuzou Suzuya'],
     'Kôtarô Amon':['Kotaro Amon'],
     'Shû Tsukiyama':['Shu Tsukiyama']
-  }};
+  },hxh:{'Kurapika':['Kurapika Kurta'],'Chrollo Lucilfer':['Kuroro','Kuroro Lucifer'],'Biscuit Krueger':['Bisky'],'Killua Zoldyck':['Kirua'],'Gon Freecss':['Gon'],'Neferpitou':['Pitou'],'Shaiapouf':['Pouf'],'Menthuthuyoupi':['Youpi'],'Hisoka Morow':['Hisoka'],'Zeno Zoldyck':['Zeno'],'Kalluto Zoldyck':['Karuto']}};
   const normalize = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('fr').replace(/[^a-z0-9]/g, '');
   const makeWorld = () => ({bag:[],last:null,target:null,guesses:[],status:'playing',rounds:0,wins:0,streak:0,best:0,totalAttempts:0});
   const fresh = () => ({current:'naruto', worlds:Object.fromEntries(WORLD_KEYS.map(w=>[w,makeWorld()]))});
@@ -437,7 +1118,7 @@ for(const [world, config] of Object.entries(DATA)) {
     try {
       const candidate = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (!candidate || !candidate.worlds) return fresh();
-      // Migration v1 → v2 : créer Tokyo Ghoul sans effacer les parties Naruto/AOT.
+      // Migration : ajouter les nouveaux univers sans effacer les parties existantes.
       for (const w of WORLD_KEYS) {
         const s = candidate.worlds[w];
         if (!s || !Array.isArray(s.bag) || !Array.isArray(s.guesses) || !['playing','won','lost'].includes(s.status)) {
@@ -540,7 +1221,7 @@ for(const [world, config] of Object.entries(DATA)) {
       const tr=document.createElement('tr');
       const characterCell=document.createElement('td');characterCell.className='character-cell';
       const name=document.createElement('div');name.className='character-name';name.textContent=guess.name;
-      const sub=document.createElement('div');sub.className='character-sub';sub.textContent=activeWorld==='naruto'?'SHINOBI':activeWorld==='tokyo'?'TOKYO GHOUL':'PERSONNAGE';
+      const sub=document.createElement('div');sub.className='character-sub';sub.textContent=activeWorld==='naruto'?'SHINOBI':activeWorld==='tokyo'?'TOKYO GHOUL':activeWorld==='hxh'?'HUNTER × HUNTER':'PERSONNAGE';
       characterCell.append(name,sub);tr.append(characterCell);
       for (const col of cfg().columns) {
         const result=evaluate(guess[col.key],target()[col.key],col.key);
@@ -563,6 +1244,8 @@ for(const [world, config] of Object.entries(DATA)) {
       ? [[4,'Village',secret.village],[8,'Spécialité',secret.skill],[12,'Initiale',secret.name[0].toUpperCase()]]
       : activeWorld==='aot'
       ? [[4,'Origine',secret.origin],[8,'Pouvoir de Titan',secret.titan],[12,'Initiale',secret.name[0].toUpperCase()]]
+      : activeWorld==='hxh'
+      ? [[4,'Nen',secret.nen],[8,'Affiliation',secret.group],[12,'Initiale',secret.name[0].toUpperCase()]]
       : [[4,'Nature',secret.species],[8,'Kagune',secret.kagune],[12,'Initiale',secret.name[0].toUpperCase()]];
     for (const [after,label,value] of hints) {
       if (n>=after) {
@@ -603,7 +1286,8 @@ for(const [world, config] of Object.entries(DATA)) {
     const messages={
       naruto:['NARUTO · DÉFI INFINI','Qui est le shinobi mystère<span> ?</span>','Trouve le ninja mystère grâce à son village, son clan, son rang et ses pouvoirs.','Ex. Naruto Uzumaki, Sasuke...'],
       aot:['ATTACK ON TITAN · DÉFI INFINI','Qui se cache derrière les murs<span> ?</span>','Trouve le personnage mystère grâce à sa faction, son origine et son Titan.','Ex. Eren Jäger, Mikasa...'],
-      tokyo:['TOKYO GHOUL · DÉFI INFINI','Qui se cache dans l’ombre<span> ?</span>','Découvre la goule ou l’inspecteur mystère : nature, organisation, kagune, rôle et apparition.','Ex. Ken Kaneki, Touka Kirishima...']
+      tokyo:['TOKYO GHOUL · DÉFI INFINI','Qui se cache dans l’ombre<span> ?</span>','Découvre la goule ou l’inspecteur mystère : nature, organisation, kagune, rôle et apparition.','Ex. Ken Kaneki, Touka Kirishima...'],
+      hxh:['HUNTER × HUNTER · DÉFI INFINI','Qui maîtrise le Nen<span> ?</span>','Retrouve le personnage grâce à son affiliation, son type de Nen, son rôle et son arc d’apparition.','Ex. Gon Freecss, Killua, Hisoka...']
     };
     const [overline,title,subtitle,placeholder]=messages[activeWorld];
     $('worldOverline').textContent=overline;
