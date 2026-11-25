@@ -1,144 +1,81 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090a0c">
-<meta name="description" content="AnimeDle Infini : 6 mini-jeux autour des animés. Devine les personnages de Naruto, AOT et Tokyo Ghoul, joue au Wordle et découvre les animés en images ou vidéos floutées.">
-<title>AnimeDle ∞ — Tous les mini-jeux anime</title>
-<style>
-:root{color-scheme:dark;--bg:#090a0c;--surface:#15161a;--line:#2a2c32;--fg:#f7f7f9;--muted:#92949e;--green:#a9d7bc}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;min-height:100vh;color:var(--fg);background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
-button,a{font:inherit}a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid #c0c0eb;outline-offset:4px}
-::selection{background:#d3d3f4;color:#090a0c}
-.container{max-width:1150px;padding:0 30px;margin:0 auto}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:81px;border-bottom:1px solid #ffffff17}
-.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px;letter-spacing:-.7px}
-.logo-icon{width:36px;height:36px;border-radius:10px;background:#f2f2f2;color:#111216;display:grid;place-items:center;font-size:26px;font-weight:800}
-.logo b{color:#acbcb3;font-weight:900}
-.logo sup{font-size:11px;color:#b8b9c4;margin-left:2px}
-.header-right{display:flex;gap:26px;align-items:center}
-.header-right a{color:#a3a3ac;font-size:11px;letter-spacing:1.2px;font-weight:800;text-transform:uppercase;transition:color .2s}
-.header-right a:hover{color:#fff}
-.live{display:flex;align-items:center;gap:9px;color:#a8b9ae;font-size:10px;font-weight:850;letter-spacing:1.4px}
-.dot{width:6px;height:6px;background:#9bd2b1;box-shadow:0 0 12px #7ec69a88;border-radius:100%}
-.hero{padding:74px 0 65px;position:relative;border-bottom:1px solid #ffffff12}
-.eyebrow{display:flex;align-items:center;gap:11px;color:#b0b9b3;font-size:10px;font-weight:850;letter-spacing:2.5px;text-transform:uppercase}
-.eyebrow::before{content:"";width:20px;height:1px;background:#acc2b3}
-.hero h1{font-size:clamp(46px,7vw,83px);letter-spacing:-4.4px;line-height:.99;margin:20px 0 19px;font-weight:900;max-width:800px}
-.hero h1 .muted{color:#767980}
-.hero h1 .accent{color:#b3d5bd}
-.hero p{max-width:590px;margin:0;color:#a3a4ad;font-size:14px;line-height:1.85}
-.hero p strong{color:#e4e4e8;font-weight:760}
-.hero-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
-.hero-tags span{font-size:10px;letter-spacing:.6px;color:#aeb1bb;border:1px solid #3a3b45;background:#15161a;border-radius:100px;padding:8px 12px;font-weight:750}
-.hero-orbit{position:absolute;right:29px;top:67px;display:grid;place-items:center;width:252px;height:252px;opacity:.65;pointer-events:none}
-.hero-orbit .ring{position:absolute;inset:0;border:1px solid #ffffff12;border-radius:50%}
-.hero-orbit .ring:nth-child(2){inset:25px;border-color:#ffffff1c}
-.hero-orbit .ring:nth-child(3){inset:52px;border-color:#ffffff22}
-.hero-orbit .infinity{font-family:Georgia,serif;font-size:101px;line-height:1;color:#b9cdbb;text-shadow:0 0 64px #93d2aa3f}
-.section{padding-top:46px}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:20px}
-.section-label{display:flex;align-items:center;gap:12px;color:#b7b9c1;font-size:11px;letter-spacing:1.8px;font-weight:800;text-transform:uppercase}
-.section-label small{font-size:10px;color:#93ba9f}
-.section-label .rule{height:1px;width:32px;background:#4d5256}
-.section-intro{font-size:12px;color:#858893;margin:8px 0 0}
-.section-count{font-size:10px;color:#777b84;font-weight:850;letter-spacing:1px;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.game-card{position:relative;display:flex;flex-direction:column;min-height:265px;isolation:isolate;border:1px solid #393a40;border-radius:17px;padding:24px;overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
-.game-card:hover{transform:translateY(-4px);border-color:#ffffff80;box-shadow:0 18px 40px #0005}
-.game-card .small{position:relative;z-index:2;font-size:10px;font-weight:850;letter-spacing:1.8px;color:#ded9d7;text-transform:uppercase}
-.game-card .glyph{position:absolute;right:-14px;top:33px;font-size:150px;font-weight:850;line-height:1;color:#ffffff13;transform:rotate(-14deg);pointer-events:none}
-.game-card .body{position:relative;z-index:2;margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:26px}
-.game-card h3{font-size:34px;font-weight:900;letter-spacing:-1.9px;line-height:1.02;margin:0}
-.game-card p{font-size:11px;color:#dfdce0;margin:0;line-height:1.6;max-width:205px}
-.game-card .cta{display:flex;justify-content:space-between;align-items:center;padding-top:12px;margin-top:12px;border-top:1px solid #ffffff3a;font-size:10px;font-weight:900;letter-spacing:1.25px}
-.game-card .cta b{display:grid;place-items:center;border:1px solid #ffffff3b;width:26px;height:26px;border-radius:100%;font-size:14px;font-weight:400;transition:transform .2s}
-.game-card:hover .cta b{transform:translate(2px,-2px)}
-.naruto{background:radial-gradient(circle at 92% 5%,#f3ac6d45,transparent 52%),linear-gradient(130deg,#36251e,#693b2b);border-color:#714839}
-.aot{background:radial-gradient(circle at 100% 4%,#a4f2d143,transparent 54%),linear-gradient(135deg,#1b3537,#34565b);border-color:#426968}
-.tokyo{background:radial-gradient(circle at 100% 0%,#fd9bd64a,transparent 50%),linear-gradient(145deg,#382238,#5b2b50);border-color:#7d4b74}
-.naruto .small{color:#ffc49e}.aot .small{color:#a0e7d0}.tokyo .small{color:#f5b0d6}
-.other{padding-top:54px;padding-bottom:79px}
-.other .game-card{min-height:232px;background:#15161a;border-color:#353741}
-.other .game-card .small{color:#adafb8}
-.other .game-card h3{font-size:29px;letter-spacing:-1.15px}
-.other .game-card p{color:#aeb0ba}
-.other .game-card .cta{border-top-color:#42444c;color:#e9eaf0}
-.wordle{background:radial-gradient(circle at 96% 5%,#4669502f,transparent 45%),linear-gradient(135deg,#141918,#191e1a)!important}
-.picture{background:radial-gradient(circle at 96% 7%,#6e5aaf3b,transparent 48%),linear-gradient(140deg,#17161e,#22202e)!important}
-.video{background:radial-gradient(circle at 94% 7%,#87545f32,transparent 51%),linear-gradient(140deg,#1b171a,#291e22)!important}
-.card-art{position:absolute;right:23px;top:34px;display:grid;grid-template-columns:repeat(3,19px);gap:4px;opacity:.9;transform:rotate(8deg);pointer-events:none}
-.card-art i{width:19px;height:19px;border-radius:4px;background:#303a33;display:grid;place-items:center;color:#fff;font-size:10px;font-style:normal;font-weight:900}
-.card-art i.good{background:#518366}.card-art i.warn{background:#c4a156}
-.photo-art{position:absolute;right:15px;top:30px;width:112px;height:86px;overflow:hidden;border-radius:10px;border:1px solid #656075;transform:rotate(8deg);opacity:.8;box-shadow:0 10px 18px #0005;background:linear-gradient(125deg,#4a4663 0 27%,#9c779a 27% 36%,#353d5e 36% 60%,#887d9a 60% 74%,#272a45 74%);filter:blur(3px);pointer-events:none}
-.photo-art::after{content:"?";position:absolute;inset:0;display:grid;place-items:center;font-size:36px;color:#fff8;font-weight:900}
-.video-art{position:absolute;right:18px;top:32px;width:119px;height:76px;display:grid;place-items:center;border:1px solid #a07b84;border-radius:11px;transform:rotate(7deg);background:linear-gradient(130deg,#4f353c,#2e262f);box-shadow:0 11px 20px #0006;pointer-events:none}
-.video-art::before{content:"";border-top:15px solid transparent;border-bottom:15px solid transparent;border-left:24px solid #e7b6c6;filter:blur(1px);margin-left:7px}
-footer{border-top:1px solid #ffffff18;min-height:100px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#8c8f98;font-size:11px;line-height:1.65}
-footer strong{font-weight:900;color:#e8e8e9;letter-spacing:.2px}
-footer a{text-decoration:underline;text-underline-offset:3px}
-@media(max-width:1030px){.hero-orbit{width:185px;height:185px;top:84px;right:30px}.hero-orbit .infinity{font-size:74px}.hero h1{max-width:650px;font-size:clamp(50px,7.5vw,73px)}}
-@media(max-width:810px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-orbit{opacity:.14}.hero{padding:59px 0 48px}.game-card{min-height:240px}.other .game-card{min-height:220px}}
-@media(max-width:570px){.container{padding:0 18px}.topbar{min-height:67px}.logo{font-size:17px}.logo-icon{width:32px;height:32px;border-radius:9px}.header-right{gap:8px}.header-right a{display:none}.hero{padding:48px 0 43px}.hero-orbit{display:none}.hero h1{letter-spacing:-2.6px;font-size:clamp(42px,11vw,62px);margin:15px 0}.hero p{font-size:12px}.hero-tags{margin-top:18px}.hero-tags span{font-size:9px;padding:7px 10px}.section{padding-top:32px}.section-intro{font-size:11px}.section-head{margin-bottom:14px}.section-count{display:none}.grid{grid-template-columns:1fr;gap:11px}.game-card{min-height:209px;padding:20px}.game-card .glyph{font-size:125px;top:22px}.game-card h3{font-size:30px}.other{padding-bottom:42px}.other .game-card{min-height:195px}.other .game-card h3{font-size:27px}.section-label{font-size:10px}.card-art{right:20px;top:27px}footer{padding:23px 0;flex-direction:column;gap:5px;align-items:flex-start;font-size:10px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="AnimeDle infini : choisis parmi 6 mini-jeux Naruto, Attack on Titan, Tokyo Ghoul, Wordle, Image Mystère et Vidéo Mystère.">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <title>AnimeDle ∞ — Choisis ton jeu</title>
+  <style>
+    :root{color-scheme:dark;--bg:#08090b;--panel:#0f1114;--white:#f5f5f6;--muted:#a1a5aa}
+    *{box-sizing:border-box}
+    html{min-width:280px}
+    body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible{outline:3px solid #dfebed;outline-offset:5px}
+    .page{width:min(100%,796px);margin:0 auto;padding:clamp(20px,5vw,54px) clamp(14px,4vw,30px) 32px}
+    .shell{padding:clamp(22px,4vw,38px);border:1px solid #262830;background:var(--panel);border-radius:24px;box-shadow:0 24px 70px #0005}
+    .heading{padding:4px 4px 25px}
+    h1{font-size:clamp(31px,5vw,43px);letter-spacing:-1.3px;line-height:1.1;margin:0 0 14px;font-weight:870}
+    h1 span{font-weight:750;color:#d8dade}
+    .subtitle{margin:0;color:#a3aca8;font-size:clamp(12px,2.8vw,15px);line-height:1.5;font-weight:760;letter-spacing:.1px}
+    .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,2.3vw,15px)}
+    .tile{position:relative;isolation:isolate;overflow:hidden;min-width:0;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;min-height:clamp(159px,30vw,228px);padding:clamp(16px,3.2vw,25px);border:1px solid #ffffff08;border-radius:18px;transition:transform .2s,border-color .2s,filter .2s}
+    .tile:hover{transform:translateY(-4px);border-color:#ffffff4f;filter:brightness(1.1)}
+    .tile:active{transform:translateY(-1px)}
+    .glyph{font-size:clamp(34px,5vw,51px);font-weight:780;line-height:1;color:#f5f5f5;user-select:none}
+    .tile-title{font-size:clamp(13px,2.6vw,19px);font-weight:850;letter-spacing:-.45px;line-height:1.17;color:#fff;overflow-wrap:break-word}
+    .tile .arrow{position:absolute;right:15px;bottom:15px;color:#ffffff8a;font-size:17px;opacity:0;transform:translate(-4px,4px);transition:opacity .2s,transform .2s}
+    .tile:hover .arrow,.tile:focus-visible .arrow{opacity:1;transform:none}
+    .naruto{background:#593a2e}.aot{background:#254b49}.tokyo{background:#4c2a4a}.wordle{background:#252d29}.image{background:#292737}.video{background:#33292c}
+    .glyph.wordle-glyph{font-family:ui-sans-serif,system-ui;font-weight:850}
+    .footer{text-align:center;margin:20px 0 0;color:#797c84;font-size:11px;line-height:1.7}
+    .footer a{text-decoration:underline;text-underline-offset:3px}
+    @media(max-width:480px){
+      .page{padding:16px 12px 23px}
+      .shell{padding:20px 16px;border-radius:20px}
+      .heading{padding:3px 2px 22px}
+      h1{font-size:32px;margin-bottom:12px}
+      .subtitle{font-size:12px}
+      .tiles{gap:11px}
+      .tile{min-height:157px;padding:17px 14px;border-radius:17px}
+      .glyph{font-size:38px}
+      .tile-title{font-size:13px}
+      .footer{font-size:10px}
+    }
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
 </head>
 <body>
-<div class="container">
-<header class="topbar">
-<a class="logo" href="./index.html" aria-label="Accueil AnimeDle"><span class="logo-icon">∞</span><span>ANIME<b>DLE</b><sup>∞</sup></span></a>
-<nav class="header-right" aria-label="Navigation principale"><a href="#jeux">LES JEUX</a><span class="live"><span class="dot" aria-hidden="true"></span> MODE INFINI</span></nav>
-</header>
-<main>
-<section class="hero" aria-labelledby="welcome-title">
-<div class="eyebrow">L'ARCADE DES FANS D'ANIMÉ</div>
-<h1 id="welcome-title">CHOISIS UN JEU.<br><span class="muted">JOUE SANS </span><span class="accent">LIMITE.</span></h1>
-<p>Devine des personnages, reconnais tes animés et trouve des mots. <strong>Six mini-jeux, aucune limite quotidienne.</strong> À toi de battre tes records.</p>
-<div class="hero-tags" aria-label="Caractéristiques"><span>✦ 6 MINI-JEUX</span><span>♾ PARTIES ILLIMITÉES</span><span>✓ GRATUIT</span></div>
-<div class="hero-orbit" aria-hidden="true"><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="infinity">∞</span></div>
-</section>
-
-<section class="section" id="jeux" aria-labelledby="character-title">
-<div class="section-head"><div><div class="section-label" id="character-title"><small>01</small> DEVINE LE PERSONNAGE <span class="rule"></span></div><p class="section-intro">Compare les indices et découvre qui se cache derrière chaque univers.</p></div><span class="section-count">03 UNIVERS</span></div>
-<div class="grid">
-<a class="game-card naruto" href="./personnages.html#naruto" aria-label="Jouer à Narutodle">
-<span class="small">01 / NARUTO · INFINI</span><span class="glyph" aria-hidden="true">忍</span>
-<div class="body"><h3>NARUTODLE</h3><p>Village, clan, rang et spécialité.</p><span class="cta">JOUER <b aria-hidden="true">↗</b></span></div>
-</a>
-<a class="game-card aot" href="./personnages.html#aot" aria-label="Jouer à AOTdle">
-<span class="small">02 / ATTACK ON TITAN · INFINI</span><span class="glyph" aria-hidden="true">壁</span>
-<div class="body"><h3>AOTDLE</h3><p>Régiment, origine et pouvoir de Titan.</p><span class="cta">JOUER <b aria-hidden="true">↗</b></span></div>
-</a>
-<a class="game-card tokyo" href="./personnages.html#tokyo" aria-label="Jouer à Tokyo Ghouldle">
-<span class="small">03 / TOKYO GHOUL · INFINI</span><span class="glyph" aria-hidden="true">喰</span>
-<div class="body"><h3>GHOULDLE</h3><p>Goules, Quinx, organisations et kagunes.</p><span class="cta">JOUER <b aria-hidden="true">↗</b></span></div>
-</a>
-</div>
-</section>
-
-<section class="section other" aria-labelledby="other-title">
-<div class="section-head"><div><div class="section-label" id="other-title"><small>02</small> AUTRES MINI-JEUX <span class="rule"></span></div><p class="section-intro">Trois autres façons de te mettre au défi.</p></div><span class="section-count">03 DÉFIS</span></div>
-<div class="grid">
-<a class="game-card wordle" href="./wordle.html" aria-label="Jouer au Wordle français infini">
-<span class="small">04 / LETTRES · INFINI</span><div class="card-art" aria-hidden="true"><i class="good">M</i><i>O</i><i class="warn">T</i><i>S</i><i class="good">E</i><i>R</i></div>
-<div class="body"><h3>WORDLE ∞</h3><p>Trouve le mot français de 5 lettres en 6 essais.</p><span class="cta">JOUER <b aria-hidden="true">↗</b></span></div>
-</a>
-<a class="game-card picture" href="./anime-mystery.html#image" aria-label="Jouer à Image mystère">
-<span class="small">05 / RECONNAÎTRE · INFINI</span><div class="photo-art" aria-hidden="true"></div>
-<div class="body"><h3>IMAGE MYSTÈRE</h3><p>Une image floutée : retrouve le bon animé.</p><span class="cta">JOUER <b aria-hidden="true">↗</b></span></div>
-</a>
-<a class="game-card video" href="./anime-mystery.html#video" aria-label="Jouer à Vidéo mystère">
-<span class="small">06 / BANDE-ANNONCE · INFINI</span><div class="video-art" aria-hidden="true"></div>
-<div class="body"><h3>VIDÉO MYSTÈRE</h3><p>Une vidéo floutée : devine la série.</p><span class="cta">JOUER <b aria-hidden="true">↗</b></span></div>
-</a>
-</div>
-</section>
-</main>
-<footer><span><strong>ANIMEDLE ∞</strong> · Une arcade faite pour les fans d'animés.</span><span>Projet fan-made indépendant · <a href="https://github.com/Rxse0/animedle-infini" target="_blank" rel="noopener noreferrer">Voir sur GitHub</a></span></footer>
-</div>
+  <main class="page">
+    <section class="shell" aria-labelledby="homeTitle">
+      <header class="heading">
+        <h1 id="homeTitle">ANIMEDLE <span>∞</span></h1>
+        <p class="subtitle">CHOISIS UN JEU. JOUE SANS LIMITE.</p>
+      </header>
+      <nav class="tiles" aria-label="Les six jeux disponibles">
+        <a class="tile naruto" href="./personnages.html#naruto" aria-label="Jouer à Narutodle">
+          <span class="glyph" aria-hidden="true">忍</span><span class="tile-title">NARUTODLE</span><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="tile aot" href="./personnages.html#aot" aria-label="Jouer à AOTdle">
+          <span class="glyph" aria-hidden="true">壁</span><span class="tile-title">AOTDLE</span><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="tile tokyo" href="./personnages.html#tokyo" aria-label="Jouer à Ghouldle">
+          <span class="glyph" aria-hidden="true">喰</span><span class="tile-title">GHOULDLE</span><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="tile wordle" href="./wordle.html" aria-label="Jouer au Wordle infini">
+          <span class="glyph wordle-glyph" aria-hidden="true">W</span><span class="tile-title">WORDLE ∞</span><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="tile image" href="./anime-mystery.html#image" aria-label="Jouer à Image Mystère">
+          <span class="glyph" aria-hidden="true">▧</span><span class="tile-title">IMAGE MYSTÈRE</span><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="tile video" href="./anime-mystery.html#video" aria-label="Jouer à Vidéo Mystère">
+          <span class="glyph" aria-hidden="true">▶</span><span class="tile-title">VIDÉO MYSTÈRE</span><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </section>
+    <p class="footer">6 jeux · Parties illimitées · Gratuit · <a href="https://github.com/Rxse0/animedle-infini" target="_blank" rel="noopener noreferrer">Projet GitHub</a></p>
+  </main>
 </body>
 </html>
