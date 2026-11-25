@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#08090b">
-  <meta name="description" content="AnimeDle infini : choisis parmi 6 mini-jeux Naruto, Attack on Titan, Tokyo Ghoul, Wordle, Image Mystère et Vidéo Mystère.">
+  <meta name="description" content="AnimeDle infini : 7 mini-jeux Naruto, Attack on Titan, Tokyo Ghoul, Hunter x Hunter, Wordle, Image et Vidéo Mystère.">
   <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
   <title>AnimeDle ∞ — Choisis ton jeu</title>
   <style>
@@ -28,7 +28,7 @@
     .tile-title{font-size:clamp(13px,2.6vw,19px);font-weight:850;letter-spacing:-.45px;line-height:1.17;color:#fff;overflow-wrap:break-word}
     .tile .arrow{position:absolute;right:15px;bottom:15px;color:#ffffff8a;font-size:17px;opacity:0;transform:translate(-4px,4px);transition:opacity .2s,transform .2s}
     .tile:hover .arrow,.tile:focus-visible .arrow{opacity:1;transform:none}
-    .naruto{background:#593a2e}.aot{background:#254b49}.tokyo{background:#4c2a4a}.wordle{background:#252d29}.image{background:#292737}.video{background:#33292c}
+    .naruto{background:#593a2e}.aot{background:#254b49}.tokyo{background:#4c2a4a}.hxh{background:linear-gradient(135deg,#254e35,#2a3b34)}.wordle{background:#252d29}.image{background:#292737}.video{background:#33292c;grid-column:1/-1;min-height:126px}
     .glyph.wordle-glyph{font-family:ui-sans-serif,system-ui;font-weight:850}
     .footer{text-align:center;margin:20px 0 0;color:#797c84;font-size:11px;line-height:1.7}
     .footer a{text-decoration:underline;text-underline-offset:3px}
@@ -54,7 +54,7 @@
         <h1 id="homeTitle">ANIMEDLE <span>∞</span></h1>
         <p class="subtitle">CHOISIS UN JEU. JOUE SANS LIMITE.</p>
       </header>
-      <nav class="tiles" aria-label="Les six jeux disponibles">
+      <nav class="tiles" aria-label="Les sept jeux disponibles">
         <a class="tile naruto" href="./personnages.html#naruto" aria-label="Jouer à Narutodle">
           <span class="glyph" aria-hidden="true">忍</span><span class="tile-title">NARUTODLE</span><span class="arrow" aria-hidden="true">↗</span>
         </a>
@@ -63,6 +63,9 @@
         </a>
         <a class="tile tokyo" href="./personnages.html#tokyo" aria-label="Jouer à Ghouldle">
           <span class="glyph" aria-hidden="true">喰</span><span class="tile-title">GHOULDLE</span><span class="arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="tile hxh" href="./personnages.html#hxh" aria-label="Jouer à Hunter x Hunterdle">
+          <span class="glyph" aria-hidden="true">✦</span><span class="tile-title">HUNTER × HUNTERDLE</span><span class="arrow" aria-hidden="true">↗</span>
         </a>
         <a class="tile wordle" href="./wordle.html" aria-label="Jouer au Wordle infini">
           <span class="glyph wordle-glyph" aria-hidden="true">W</span><span class="tile-title">WORDLE ∞</span><span class="arrow" aria-hidden="true">↗</span>
@@ -75,7 +78,7 @@
         </a>
       </nav>
     </section>
-    <p class="footer">6 jeux · Parties illimitées · Gratuit · <a href="https://github.com/Rxse0/animedle-infini" target="_blank" rel="noopener noreferrer">Projet GitHub</a></p>
+    <p class="footer">7 jeux · Parties illimitées · Gratuit · <a href="https://github.com/Rxse0/animedle-infini" target="_blank" rel="noopener noreferrer">Projet GitHub</a></p>
   </main>
 </body>
 </html>
