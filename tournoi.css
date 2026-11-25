@@ -1,0 +1,59 @@
+/* AnimeDle — tournoi local partagé entre les mini-jeux (sauf Wordle) */
+.tournoi-fab{position:fixed;right:20px;bottom:20px;z-index:70;display:flex;gap:10px;align-items:center;justify-content:center;min-height:48px;border-radius:100px;border:1px solid #69796f;background:#e7f2e9;color:#142119;box-shadow:0 10px 35px #0009;padding:11px 18px;font:800 12px/1.25 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.2px;cursor:pointer;transition:transform .2s,background .2s}
+.tournoi-fab:hover{transform:translateY(-3px);background:#cfe7d4}.tournoi-fab:focus-visible{outline:3px solid #9fc8b0;outline-offset:3px}
+.tournoi-fab .tournoi-fab-icon{font-size:20px;line-height:1}.tournoi-fab .tournoi-fab-label{white-space:nowrap}
+.tournoi-modal{box-sizing:border-box;width:min(95vw,570px);max-height:min(89dvh,830px);margin:auto;padding:0;border:1px solid #42464b;border-radius:20px;color:#f7f7f9;background:#111316;box-shadow:0 35px 85px #000d;overflow-y:auto;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.tournoi-modal::backdrop{background:#000b;backdrop-filter:blur(5px)}
+.tournoi-modal *{box-sizing:border-box}.tournoi-modal button,.tournoi-modal input{font:inherit}.tournoi-modal button{cursor:pointer}
+.tournoi-modal button:disabled{opacity:.42;cursor:default}.tournoi-modal button:focus-visible,.tournoi-modal input:focus-visible{outline:2px solid #afd4b7;outline-offset:3px}
+.tournoi-header{padding:22px 26px 20px;border-bottom:1px solid #2d3034;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.tournoi-header-left{display:flex;gap:13px;align-items:center}.tournoi-emblem{width:45px;height:45px;border-radius:13px;display:grid;place-items:center;background:#273c2e;color:#b5dfbc;font-size:24px}
+.tournoi-eyebrow{display:block;color:#9ea5a6;font-size:10px;font-weight:850;letter-spacing:1.8px;text-transform:uppercase}
+.tournoi-header h2{margin:2px 0 0;font-size:23px;letter-spacing:-.8px;line-height:1.1;color:#f7f7f9}
+.tournoi-close{flex:0 0 auto;display:grid;place-items:center;width:36px;height:36px;border:1px solid #45484d;border-radius:10px;background:#23252a;color:#f4f4f4;font-size:23px!important;line-height:1}
+.tournoi-close:hover{background:#363940}
+.tournoi-inner{padding:24px 26px 28px}
+.tournoi-copy{color:#b8babf;font-size:12px;line-height:1.7;margin:0 0 19px}.tournoi-copy strong{color:#ebefed}
+.tournoi-form{display:grid;gap:13px}
+.tournoi-field{display:grid;gap:6px}.tournoi-field label{color:#c4c9c9;font-size:11px;font-weight:750;letter-spacing:.6px}
+.tournoi-field input{width:100%;min-height:43px;border-radius:9px;border:1px solid #4a4c52;background:#1d2024;color:#fff;padding:9px 13px;font-size:14px;outline:0}
+.tournoi-field input::placeholder{color:#80838a}.tournoi-field input:focus{border-color:#96c6a5}
+.tournoi-error{font-size:12px;color:#e5a2a2;min-height:16px;margin:0}
+.tournoi-main-btn{min-height:45px;padding:12px 18px;border:0;border-radius:10px;background:#dcf1df;color:#112118;font-weight:850!important;font-size:13px!important}
+.tournoi-main-btn:hover:not(:disabled){background:#bce0c4}
+.tournoi-meta{display:flex;justify-content:space-between;gap:8px;align-items:center;color:#b4b6bf;font-size:11px;font-weight:760;letter-spacing:.7px;text-transform:uppercase}
+.tournoi-meta b{color:#b7e4c1;font-size:12px}
+.tournoi-progress{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin:13px 0 19px}
+.tournoi-dot{height:5px;background:#34373d;border-radius:100px}.tournoi-dot.done{background:#74a584}.tournoi-dot.now{background:#def5de}
+.tournoi-help{font-size:12px;color:#aeb0ba;margin:0 0 14px}
+.tournoi-players{display:grid;gap:10px;margin-bottom:20px}
+.tournoi-person{display:flex;gap:11px;align-items:center;justify-content:space-between;padding:13px 15px;background:#1c1f23;border:1px solid #33363b;border-radius:12px;min-height:80px}
+.tournoi-person.won{border-color:#6eae82;background:#233529}
+.tournoi-person-info{min-width:0;display:flex;gap:11px;align-items:center}.tournoi-avatar{width:35px;height:35px;flex:0 0 auto;display:grid;place-items:center;border-radius:10px;background:#343c39;color:#dce9dd;font-size:15px;font-weight:900}
+.tournoi-person-name{display:block;color:#f8f9fa;font-weight:800;font-size:14px;overflow-wrap:anywhere}
+.tournoi-person-points{color:#a3aab0;font-size:11px}.tournoi-person-points strong{color:#e7f1e8}
+.tournoi-add{flex:0 0 auto;min-width:97px;padding:10px 12px;border:1px solid #6b9b78;border-radius:9px;background:#345d40;color:#eefff3;font-size:12px!important;font-weight:800!important}
+.tournoi-add:hover{background:#457851}
+.tournoi-person.won .tournoi-add{background:#35383c;border-color:#777b80;color:#e7e8ea}
+.tournoi-person.won .tournoi-add:hover{background:#44474b}
+.tournoi-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:9px}
+.tournoi-sub-btn{min-height:43px;border:1px solid #52565a;border-radius:10px;color:#e5e7ea;background:#27292e;font-size:12px!important;font-weight:800!important;padding:9px 13px}
+.tournoi-sub-btn:hover:not(:disabled){background:#36393e}
+.tournoi-note{font-size:11px;color:#85888f;line-height:1.6;margin:15px 0 0}
+.tournoi-finish-kicker{font-size:10px;letter-spacing:2px;font-weight:900;color:#acddb8;text-align:center}
+.tournoi-finish h3{font-size:30px;line-height:1.12;text-align:center;letter-spacing:-.8px;margin:6px 0 8px}
+.tournoi-finish p{font-size:12px;color:#b0b4b6;text-align:center;margin:0 auto 20px}
+.tournoi-ranking{display:grid;gap:10px;margin:0 0 21px;padding:0;list-style:none}
+.tournoi-rank{background:#1c1f23;border:1px solid #3a3d44;border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.tournoi-rank:first-child{border-color:#ad9b65;background:#302a1c}
+.tournoi-medal{width:40px;height:40px;display:grid;place-items:center;font-size:20px;border-radius:9px;background:#ffffff15;flex:0 0 auto}
+.tournoi-rankname{font-weight:820;color:#fff;font-size:15px;flex:1;min-width:0;overflow-wrap:anywhere}
+.tournoi-rankpoints{white-space:nowrap;color:#ddd;font-size:12px;font-weight:700}
+.tournoi-rankpoints b{font-size:19px;color:#fff}
+.tournoi-finish-actions{display:grid;grid-template-columns:1fr 1.3fr;gap:9px}
+.tournoi-reset-wrap{padding:13px 26px 22px;border-top:1px solid #2c3033;display:flex;align-items:center;justify-content:space-between;gap:13px}
+.tournoi-reset-wrap span{font-size:10px;line-height:1.5;color:#848890;max-width:285px}
+.tournoi-reset{flex:0 0 auto;border:0;background:none;color:#bcbec5;text-decoration:underline;text-underline-offset:3px;font-size:11px!important;padding:7px 3px}
+.tournoi-reset:hover{color:#fff}
+@media(max-width:600px){.tournoi-fab{right:12px;bottom:14px;min-height:43px;padding:9px 13px}.tournoi-fab .tournoi-fab-label{font-size:11px}.tournoi-modal{width:calc(100vw - 20px);border-radius:16px;max-height:88dvh}.tournoi-header{padding:17px 17px 15px}.tournoi-header h2{font-size:20px}.tournoi-inner{padding:18px 16px 20px}.tournoi-reset-wrap{padding:12px 16px 17px}.tournoi-person{padding:10px 11px}.tournoi-add{min-width:88px;padding:10px 8px;font-size:11px!important}.tournoi-person-name{font-size:13px}.tournoi-finish h3{font-size:25px}}
+@media(prefers-reduced-motion:reduce){.tournoi-fab{transition:none}}
