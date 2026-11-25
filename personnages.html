@@ -94,6 +94,14 @@ body[data-world="hxh"] .hero h1 em{background-image:linear-gradient(110deg,#d9ff
 body[data-world="hxh"] .char-tab.active{border-color:#7fd2a1;background:#29513b5e}
 @media(max-width:770px){.char-nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.char-tab{min-height:47px;font-size:11px}}
 
+
+/* JJKdle */
+body[data-world="jjk"]{--accent:#bda4ef;--accent-bright:#dfd0ff;--tint:189,164,239}
+body[data-world="jjk"] .char-tab.active{border-color:#bda4ef;background:#49325e70}
+.char-nav{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:860px){.char-nav{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.char-nav{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
 </style>
   
   
@@ -122,6 +130,7 @@ body[data-world="hxh"] .char-tab.active{border-color:#7fd2a1;background:#29513b5
         <button class="char-tab" type="button" data-switch="aot" role="tab" aria-selected="false" aria-controls="gameArea">⚔️ Attack on Titan</button>
         <button class="char-tab" type="button" data-switch="tokyo" role="tab" aria-selected="false" aria-controls="gameArea">🌺 Tokyo Ghoul</button>
         <button class="char-tab" type="button" data-switch="hxh" role="tab" aria-selected="false" aria-controls="gameArea">🕷️ Hunter × Hunter</button>
+        <button class="char-tab" type="button" data-switch="jjk" role="tab" aria-selected="false" aria-controls="gameArea">⚡ Jujutsu Kaisen</button>
       </nav>
       <section class="game-area" id="gameArea">
         <div class="section-kicker"><span class="round-label">02</span> LA PARTIE <span class="thin-line"></span><span class="live-tag"><span class="pulse-dot"></span> EN COURS</span></div>
@@ -185,6 +194,19 @@ body[data-world="hxh"] .char-tab.active{border-color:#7fd2a1;background:#29513b5
   indiquent une période de première apparition approximative.
 */
 const DATA = {
+  jjk: {
+    title: 'Jujutsu Kaisen', subtitle: 'Exorcistes, fléaux et énergie occulte',
+    columns: [
+      {key:'gender', label:'Genre'},
+      {key:'group', label:'Affiliation'},
+      {key:'nature', label:'Nature'},
+      {key:'grade', label:'Grade'},
+      {key:'power', label:'Technique'},
+      {key:'debut', label:'Apparition'}
+    ],
+    ordered:{debut:["JJK 0","Début JJK","Échange Kyoto","Origine de l'obéissance","Passé de Gojo","Shibuya"]},
+    characters:[["Yuji Itadori","Homme","École Tokyo","Exorciste","Non classé","Force physique","Début JJK"],["Megumi Fushiguro","Homme","École Tokyo","Exorciste","Grade 2","Dix ombres","Début JJK"],["Nobara Kugisaki","Femme","École Tokyo","Exorciste","Grade 3","Poupée vaudou","Début JJK"],["Satoru Gojo","Homme","École Tokyo","Exorciste","Classe S","Infini","Début JJK"],["Ryomen Sukuna","Homme","Indépendant","Fléau","Classe S","Entailles","Début JJK"],["Masamichi Yaga","Homme","École Tokyo","Exorciste","Grade 1","Marionnettes","Début JJK"],["Kiyotaka Ijichi","Homme","École Tokyo","Assistant","Non classé","Barrières","Début JJK"],["Shoko Ieiri","Femme","École Tokyo","Exorciste","Non classé","Soin occulte","Début JJK"],["Maki Zenin","Femme","École Tokyo","Exorciste","Grade 4","Armes maudites","Début JJK"],["Toge Inumaki","Homme","École Tokyo","Exorciste","Semi-grade 1","Parole maudite","Début JJK"],["Panda","Non précisé","École Tokyo","Corps maudit","Grade 2","Noyaux multiples","Début JJK"],["Kento Nanami","Homme","Indépendant","Exorciste","Grade 1","Ratio 7:3","Début JJK"],["Aoi Todo","Homme","École Kyoto","Exorciste","Grade 1","Boogie Woogie","Échange Kyoto"],["Mai Zenin","Femme","École Kyoto","Exorciste","Grade 3","Création","Échange Kyoto"],["Kasumi Miwa","Femme","École Kyoto","Exorciste","Grade 3","Sabre","Échange Kyoto"],["Noritoshi Kamo","Homme","École Kyoto","Exorciste","Semi-grade 1","Manipulation du sang","Échange Kyoto"],["Momo Nishimiya","Femme","École Kyoto","Exorciste","Grade 2","Balai volant","Échange Kyoto"],["Kokichi Muta (Mechamaru)","Homme","École Kyoto","Exorciste","Semi-grade 1","Marionnettes","Échange Kyoto"],["Utahime Iori","Femme","École Kyoto","Exorciste","Semi-grade 1","Danse rituelle","Échange Kyoto"],["Yoshinobu Gakuganji","Homme","École Kyoto","Exorciste","Non classé","Guitare électrique","Échange Kyoto"],["Mahito","Homme","Groupe des fléaux","Fléau","Classe S","Altération de l'âme","Début JJK"],["Jogo","Homme","Groupe des fléaux","Fléau","Classe S","Lave et feu","Début JJK"],["Hanami","Non précisé","Groupe des fléaux","Fléau","Classe S","Plantes","Début JJK"],["Dagon","Non précisé","Groupe des fléaux","Fléau","Classe S","Océan","Début JJK"],["Suguru Geto","Homme","Groupe Geto","Utilisateur de fléaux","Classe S","Manipulation des fléaux","JJK 0"],["Yuta Okkotsu","Homme","École Tokyo","Exorciste","Classe S","Rika","JJK 0"],["Rika Orimoto","Femme","Indépendant","Esprit vengeur","Classe S","Énergie occulte","JJK 0"],["Miguel","Homme","Groupe Geto","Utilisateur de fléaux","Non classé","Corde noire","JJK 0"],["Larue","Homme","Groupe Geto","Utilisateur de fléaux","Non classé","Préhension","JJK 0"],["Manami Suda","Femme","Groupe Geto","Utilisateur de fléaux","Non classé","Non révélée","JJK 0"],["Nanako Hasaba","Femme","Groupe Geto","Utilisateur de fléaux","Non classé","Téléphone","JJK 0"],["Mimiko Hasaba","Femme","Groupe Geto","Utilisateur de fléaux","Non classé","Poupée","JJK 0"],["Haruta Shigemo","Homme","Groupe Geto","Utilisateur de fléaux","Non classé","Miracles","Shibuya"],["Junpei Yoshino","Homme","Indépendant","Humain","Non classé","Méduse","Début JJK"],["Nagi Yoshino","Femme","Indépendant","Humain","Aucun","Aucune","Début JJK"],["Takuma Ino","Homme","École Tokyo","Exorciste","Grade 2","Auspices","Shibuya"],["Mei Mei","Femme","Indépendant","Exorciste","Grade 1","Corbeaux","Shibuya"],["Ui Ui","Homme","Indépendant","Exorciste","Non classé","Téléportation","Shibuya"],["Atsuya Kusakabe","Homme","École Tokyo","Exorciste","Grade 1","Nouveau style de l'ombre","Shibuya"],["Naobito Zenin","Homme","Clan Zenin","Exorciste","Grade 1","Projection","Shibuya"],["Toji Fushiguro","Homme","Indépendant","Humain","Aucun","Armes maudites","Passé de Gojo"],["Riko Amanai","Femme","Indépendant","Humain","Aucun","Aucune","Passé de Gojo"],["Misato Kuroi","Femme","Indépendant","Humain","Aucun","Aucune","Passé de Gojo"],["Yuki Tsukumo","Femme","Indépendant","Exorciste","Classe S","Masse virtuelle","Passé de Gojo"],["Choso","Homme","Peintures de la mort","Hybride","Classe S","Manipulation du sang","Origine de l'obéissance"],["Eso","Homme","Peintures de la mort","Hybride","Classe S","Putréfaction","Origine de l'obéissance"],["Kechizu","Homme","Peintures de la mort","Hybride","Classe S","Sang corrosif","Origine de l'obéissance"],["Ko-Guy","Non précisé","Groupe des fléaux","Fléau","Non classé","Saut","Shibuya"],["Ogami","Femme","Groupe Geto","Utilisateur de fléaux","Non classé","Invocation","Shibuya"],["Jiro Awasaka","Homme","Groupe Geto","Utilisateur de fléaux","Non classé","Inverse","Shibuya"],["Uraume","Non précisé","Indépendant","Utilisateur de fléaux","Non classé","Glace","Shibuya"],["Kenjaku","Non précisé","Indépendant","Utilisateur de fléaux","Non classé","Changement de corps","Shibuya"]]
+  },
   hxh: {
     title: 'Hunter × Hunter', subtitle: 'Hunters, Nen et Brigade fantôme',
     columns: [
@@ -1084,7 +1106,8 @@ const HEADERS = {
   naruto:['name','gender','village','clan','rank','skill','debut'],
   aot:['name','gender','faction','origin','titan','status','debut'],
   tokyo:['name','gender','species','group','kagune','role','debut'],
-  hxh:['name','gender','group','nen','role','power','debut']
+  hxh:['name','gender','group','nen','role','power','debut'],
+  jjk:['name','gender','group','nature','grade','power','debut']
 };
 for(const [world, config] of Object.entries(DATA)) {
   config.characters = config.characters.map(row => Object.fromEntries(HEADERS[world].map((key,i)=>[key,row[i]])));
@@ -1096,7 +1119,7 @@ for(const [world, config] of Object.entries(DATA)) {
 (() => {
   'use strict';
   const STORAGE_KEY = 'animedle-infinity-v1';
-  const WORLD_KEYS = ['naruto', 'aot', 'tokyo', 'hxh'];
+  const WORLD_KEYS = ['naruto', 'aot', 'tokyo', 'hxh', 'jjk'];
   const $ = id => document.getElementById(id);
   const byName = (world, name) => DATA[world].characters.find(c => c.name === name);
   // Surnoms les plus connus : les joueurs peuvent saisir « Haise » ou « Jason ».
@@ -1110,7 +1133,7 @@ for(const [world, config] of Object.entries(DATA)) {
     'Jûzô Suzuya':['Juuzou Suzuya'],
     'Kôtarô Amon':['Kotaro Amon'],
     'Shû Tsukiyama':['Shu Tsukiyama']
-  },hxh:{'Kurapika':['Kurapika Kurta'],'Chrollo Lucilfer':['Kuroro','Kuroro Lucifer'],'Biscuit Krueger':['Bisky'],'Killua Zoldyck':['Kirua'],'Gon Freecss':['Gon'],'Neferpitou':['Pitou'],'Shaiapouf':['Pouf'],'Menthuthuyoupi':['Youpi'],'Hisoka Morow':['Hisoka'],'Zeno Zoldyck':['Zeno'],'Kalluto Zoldyck':['Karuto']}};
+  },hxh:{'Kurapika':['Kurapika Kurta'],'Chrollo Lucilfer':['Kuroro','Kuroro Lucifer'],'Biscuit Krueger':['Bisky'],'Killua Zoldyck':['Kirua'],'Gon Freecss':['Gon'],'Neferpitou':['Pitou'],'Shaiapouf':['Pouf'],'Menthuthuyoupi':['Youpi'],'Hisoka Morow':['Hisoka'],'Zeno Zoldyck':['Zeno'],'Kalluto Zoldyck':['Karuto']},jjk:{'Yuji Itadori':['Yuuji Itadori','Itadori'],'Satoru Gojo':['Gojo','Gojô'],'Ryomen Sukuna':['Sukuna'],'Megumi Fushiguro':['Megumi'],'Nobara Kugisaki':['Nobara'],'Kokichi Muta (Mechamaru)':['Mechamaru'],'Suguru Geto':['Geto'],'Kento Nanami':['Nanami'],'Yuta Okkotsu':['Yuta'],'Toji Fushiguro':['Toji'],'Aoi Todo':['Todo']}};
   const normalize = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('fr').replace(/[^a-z0-9]/g, '');
   const makeWorld = () => ({bag:[],last:null,target:null,guesses:[],status:'playing',rounds:0,wins:0,streak:0,best:0,totalAttempts:0});
   const fresh = () => ({current:'naruto', worlds:Object.fromEntries(WORLD_KEYS.map(w=>[w,makeWorld()]))});
@@ -1222,7 +1245,7 @@ for(const [world, config] of Object.entries(DATA)) {
       const tr=document.createElement('tr');
       const characterCell=document.createElement('td');characterCell.className='character-cell';
       const name=document.createElement('div');name.className='character-name';name.textContent=guess.name;
-      const sub=document.createElement('div');sub.className='character-sub';sub.textContent=activeWorld==='naruto'?'SHINOBI':activeWorld==='tokyo'?'TOKYO GHOUL':activeWorld==='hxh'?'HUNTER × HUNTER':'PERSONNAGE';
+      const sub=document.createElement('div');sub.className='character-sub';sub.textContent=activeWorld==='naruto'?'SHINOBI':activeWorld==='tokyo'?'TOKYO GHOUL':activeWorld==='hxh'?'HUNTER × HUNTER':activeWorld==='jjk'?'JUJUTSU KAISEN':'PERSONNAGE';
       characterCell.append(name,sub);tr.append(characterCell);
       for (const col of cfg().columns) {
         const result=evaluate(guess[col.key],target()[col.key],col.key);
@@ -1247,6 +1270,8 @@ for(const [world, config] of Object.entries(DATA)) {
       ? [[4,'Origine',secret.origin],[8,'Pouvoir de Titan',secret.titan],[12,'Initiale',secret.name[0].toUpperCase()]]
       : activeWorld==='hxh'
       ? [[4,'Nen',secret.nen],[8,'Affiliation',secret.group],[12,'Initiale',secret.name[0].toUpperCase()]]
+      : activeWorld==='jjk'
+      ? [[4,'Grade',secret.grade],[8,'Technique',secret.power],[12,'Initiale',secret.name[0].toUpperCase()]]
       : [[4,'Nature',secret.species],[8,'Kagune',secret.kagune],[12,'Initiale',secret.name[0].toUpperCase()]];
     for (const [after,label,value] of hints) {
       if (n>=after) {
@@ -1288,7 +1313,8 @@ for(const [world, config] of Object.entries(DATA)) {
       naruto:['NARUTO · DÉFI INFINI','Qui est le shinobi mystère<span> ?</span>','Trouve le ninja mystère grâce à son village, son clan, son rang et ses pouvoirs.','Ex. Naruto Uzumaki, Sasuke...'],
       aot:['ATTACK ON TITAN · DÉFI INFINI','Qui se cache derrière les murs<span> ?</span>','Trouve le personnage mystère grâce à sa faction, son origine et son Titan.','Ex. Eren Jäger, Mikasa...'],
       tokyo:['TOKYO GHOUL · DÉFI INFINI','Qui se cache dans l’ombre<span> ?</span>','Découvre la goule ou l’inspecteur mystère : nature, organisation, kagune, rôle et apparition.','Ex. Ken Kaneki, Touka Kirishima...'],
-      hxh:['HUNTER × HUNTER · DÉFI INFINI','Qui maîtrise le Nen<span> ?</span>','Retrouve le personnage grâce à son affiliation, son type de Nen, son rôle et son arc d’apparition.','Ex. Gon Freecss, Killua, Hisoka...']
+      hxh:['HUNTER × HUNTER · DÉFI INFINI','Qui maîtrise le Nen<span> ?</span>','Retrouve le personnage grâce à son affiliation, son type de Nen, son rôle et son arc d’apparition.','Ex. Gon Freecss, Killua, Hisoka...'],
+      jjk:['JUJUTSU KAISEN · DÉFI INFINI','Qui est l’exorciste mystère<span> ?</span>','Trouve le personnage grâce à sa nature, son affiliation, son grade et sa technique occulte.','Ex. Yuji Itadori, Gojo, Sukuna...']
     };
     const [overline,title,subtitle,placeholder]=messages[activeWorld];
     $('worldOverline').textContent=overline;
