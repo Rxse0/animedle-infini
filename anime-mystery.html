@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090a0c">
+<meta name="description" content="Devine l'animé : image mystère ou bande-annonce floutée, défis illimités, indices et séries de victoires.">
+<title>Anime Mystery ∞ — AnimeDle</title>
+<style>
+:root{color-scheme:dark;--bg:#090a0c;--panel:#111216;--border:#292b32;--text:#f5f5f7;--muted:#9497a0;--green:#94d3ae;--accent:#b5b7f0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font:14px/1.6 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+button,a{font:inherit}button{cursor:pointer}button:disabled{cursor:default}a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid #c1c1f7;outline-offset:3px}
+[hidden]{display:none!important}
+.wrap{max-width:1030px;margin:auto;padding:0 24px}
+header{min-height:70px;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid #24252b}
+.back{display:flex;align-items:center;gap:12px;color:#d1d1d8;font-size:12px;font-weight:700}
+.back:hover{color:white}.back .arr{font-size:22px;font-weight:300}.tag{color:#9698a0;font-weight:800;font-size:10px;letter-spacing:1.9px;text-transform:uppercase}
+main{max-width:770px;margin:auto;padding:40px 0 36px}
+.heading{text-align:center}.heading .eyebrow{color:#aaaec0;font-size:10px;letter-spacing:3px;font-weight:800;text-transform:uppercase}
+.heading h1{margin:10px 0 7px;font-size:clamp(41px,7vw,64px);line-height:1.12;letter-spacing:-2.6px;font-weight:860}
+.heading h1 span{color:#afaefa}.heading p{color:var(--muted);margin:0 auto 27px;max-width:450px;font-size:12px}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:5px;background:#111216;border:1px solid #292b31;border-radius:15px;max-width:550px;margin:0 auto 26px}
+.tab{border:1px solid transparent;background:none;color:#8d909a;padding:13px 10px;border-radius:11px;font-size:12px;font-weight:750}
+.tab:hover{color:#ddd}.tab[aria-selected="true"]{background:#292b32;border-color:#444651;color:#fff;box-shadow:0 4px 12px #0005}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:600px;margin:0 auto 24px}
+.stats>div{min-height:75px;background:var(--panel);border:1px solid var(--border);border-radius:12px;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:2px}
+.stats strong{font-size:24px;font-weight:850;line-height:1.15;letter-spacing:-.6px;font-variant-numeric:tabular-nums}
+.stats .streak strong{color:var(--green)}
+.stats small{color:#868995;font-weight:750;letter-spacing:1px;font-size:9px;text-transform:uppercase}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:0 0 10px;color:#888b97;font-size:10px;font-weight:780;letter-spacing:1.3px;text-transform:uppercase}
+.topline strong{font-weight:850;color:#d8dae1}
+.media{position:relative;overflow:hidden;background:#191c22;border:1px solid #343640;border-radius:16px;aspect-ratio:16/9;isolation:isolate}
+.media::after{content:"";inset:0;position:absolute;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 60px #0009}
+.media img,.media iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(19px) saturate(.72) brightness(.76);transform:scale(1.13);transition:filter .5s,transform .5s}
+.media[data-hint="1"] img,.media[data-hint="1"] iframe{filter:blur(11px) saturate(.86) brightness(.86);transform:scale(1.08)}
+.media[data-hint="2"] img,.media[data-hint="2"] iframe{filter:blur(5px) saturate(.96);transform:scale(1.04)}
+.media[data-revealed="true"] img,.media[data-revealed="true"] iframe{filter:none;transform:scale(1)}
+.media iframe{border:0;pointer-events:none;z-index:1}
+.media .film{display:grid;place-items:center;position:absolute;z-index:2;top:12px;left:12px;background:#08090cba;border:1px solid #ffffff2b;color:#fff;font-size:10px;letter-spacing:1px;font-weight:800;padding:6px 10px;border-radius:8px}
+.media .film[hidden]{display:none}
+.play-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:3}
+.play{border:1px solid #ffffff5e;color:#fff;background:#08090ddc;backdrop-filter:blur(7px);padding:15px 22px;border-radius:100px;font-size:13px;font-weight:800;box-shadow:0 14px 28px #0008}
+.play:hover{background:#26262eea}
+.media .corner{position:absolute;bottom:14px;right:14px;z-index:2;font-size:10px;letter-spacing:1px;background:#090a0cbc;border:1px solid #ffffff29;border-radius:8px;padding:5px 9px;color:#ddd}
+.tools{display:flex;align-items:center;justify-content:space-between;gap:9px;margin:13px 0 20px;flex-wrap:wrap}
+.tool{background:#16171b;border:1px solid #383a43;border-radius:9px;color:#c9cad1;padding:9px 12px;font-size:11px;font-weight:750}
+.tool:hover:not(:disabled){border-color:#85879b;background:#202127}
+.tool:disabled{opacity:.38}.hint-count{font-size:11px;color:#81838d;margin-left:auto}
+.hinttext{min-height:24px;margin:-8px 0 16px;text-align:center;color:#a6a7b2;font-size:12px}
+.question{text-align:center;margin:0 0 14px;font-size:18px;letter-spacing:-.3px;font-weight:790}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.choice{min-height:67px;border:1px solid #373944;background:#16171c;border-radius:12px;padding:14px 16px;color:#ececf0;text-align:left;font-weight:730;font-size:13px;line-height:1.35;display:flex;align-items:center;justify-content:space-between;gap:10px;transition:background .14s,border-color .14s,transform .14s}
+.choice:hover:not(:disabled){background:#242630;border-color:#8487a1;transform:translateY(-1px)}
+.choice b{flex:0 0 auto;display:grid;place-items:center;width:26px;height:26px;border-radius:7px;color:#aaaeb9;background:#272a32;font-size:11px}
+.choice.correct{background:#193126;border-color:#5d9b74;color:#cff5d9}.choice.correct b{background:#426f53;color:white}
+.choice.wrong{background:#321f26;border-color:#996371;color:#f1c8d1}.choice.wrong b{background:#713c4c;color:white}
+.choice:disabled{opacity:.8}.choice.correct:disabled,.choice.wrong:disabled{opacity:1}
+.result{border:1px solid #365c49;background:#131e19;border-radius:13px;margin:18px 0 0;padding:18px;text-align:center}
+.result.lose{border-color:#75474e;background:#24191d}
+.result h2{margin:0;font-size:19px;letter-spacing:-.4px}
+.result p{color:#c0c7c1;font-size:12px;margin:5px 0 12px}
+.result button{background:#edf3ee;color:#101713;border:0;border-radius:9px;padding:12px 17px;font-weight:850;min-width:210px}
+.result button:hover{background:#d0f0da}
+.skip{display:block;margin:18px auto 0;padding:8px;color:#777b87;font-weight:700;border:0;background:transparent;font-size:11px;text-decoration:underline;text-underline-offset:4px}
+.skip:hover{color:#eee}
+.notice{max-width:690px;margin:20px auto 0;border-top:1px solid #292b31;padding:19px 0;color:#8c8e9a;font-size:11px;line-height:1.85}
+.notice strong{color:#d2d3dc}.notice p{margin:5px 0}
+.loading{text-align:center;color:#a5a7b1;padding:40px 15px;border:1px solid #2b2d35;background:#111216;border-radius:14px}
+.retry{margin:12px auto 0;border:1px solid #545660;background:#282a32;color:white;font-weight:800;padding:10px 15px;border-radius:9px}
+footer{padding:18px;border-top:1px solid #25262b;text-align:center;color:#747781;font-size:10px}
+footer a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:600px){.wrap{padding:0 14px}header{min-height:62px}.tag{font-size:9px}main{padding:25px 0}.heading p{font-size:11px}.tabs{margin-bottom:19px}.tab{font-size:11px;padding:12px 6px}.stats{gap:6px;margin-bottom:18px}.stats>div{min-height:66px}.stats strong{font-size:22px}.stats small{font-size:8px}.media{border-radius:12px}.choices{gap:7px}.choice{padding:12px 10px;min-height:67px;font-size:11px}.choice b{width:23px;height:23px;font-size:10px}.tool{padding:8px 9px;font-size:10px}.hint-count{font-size:10px}.question{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<a class="back" href="./index.html"><span class="arr" aria-hidden="true">←</span> Retour à AnimeDle</a>
+<span class="tag">Mini-jeux · ∞</span>
+</header>
+<main>
+<div class="heading">
+<div class="eyebrow">AnimeDle · Défis visuels</div>
+<h1>ANIME <span>MYSTERY</span></h1>
+<p>Reconnais ton animé avec une image ou une vidéo floutée.<br>Choisis la bonne réponse et bats ton record.</p>
+</div>
+<div class="tabs" role="tablist" aria-label="Mode de jeu">
+<button id="modeImage" type="button" class="tab" role="tab" aria-selected="true">▧ &nbsp; Image mystère</button>
+<button id="modeVideo" type="button" class="tab" role="tab" aria-selected="false">▶ &nbsp; Vidéo mystère</button>
+</div>
+<div class="stats" aria-label="Statistiques du mode">
+<div class="streak"><strong id="streak">0</strong><small>Série actuelle</small></div>
+<div><strong id="wins">0</strong><small>Victoires totales</small></div>
+<div><strong id="best">0</strong><small>Record</small></div>
+</div>
+<div id="loading" class="loading" role="status" aria-live="polite">Chargement des animés…</div>
+<div id="game" hidden>
+<div class="topline"><strong id="round">PARTIE #001</strong><span id="modeLabel">IMAGE · NIVEAU 1</span></div>
+<div id="media" class="media" data-hint="0" data-revealed="false">
+<img id="picture" src="" alt="Image d'animé volontairement floutée">
+<span class="film" id="film" hidden>VIDÉO FLOUTÉE</span>
+<div class="play-wrap" id="playWrap" hidden><button type="button" class="play" id="play">▶ Lancer la vidéo (muet)</button></div>
+<span class="corner" id="corner">INDICE VISUEL</span>
+</div>
+<div class="tools">
+<button class="tool" type="button" id="hintBtn">✦ Révéler un indice</button>
+<button class="tool" type="button" id="changeVideo" hidden>↻ Changer de vidéo</button>
+<span class="hint-count" id="hintCounter">0 / 2 indices</span>
+</div>
+<p class="hinttext" id="hintText" aria-live="polite"></p>
+<h2 class="question" id="question">De quel animé s'agit-il ?</h2>
+<div class="choices" id="choices" aria-label="Choix de réponses"></div>
+<div class="result" id="result" hidden>
+<h2 id="resultTitle"></h2>
+<p id="resultText"></p>
+<button type="button" id="next">Nouvelle partie →</button>
+</div>
+<button class="skip" id="skip" type="button">Abandonner la partie (série remise à zéro)</button>
+</div>
+<div class="notice">
+<strong>Comment jouer ?</strong>
+<p>Chaque manche propose quatre réponses. L'image est floutée ou la bande-annonce est masquée par un flou. Tu peux utiliser jusqu'à deux indices (date de sortie et genre) tout en rendant le visuel un peu plus net.</p>
+<p>Une bonne réponse augmente ta série. Une erreur ou un abandon remet <strong>la série à zéro</strong>. Ton record et tes victoires totales restent enregistrés dans ton navigateur. Les parties sont illimitées.</p>
+<p>Le mode vidéo nécessite une connexion et le chargement d'un lecteur YouTube. Certaines bandes-annonces peuvent être indisponibles selon le pays ou le navigateur : utilise « Changer de vidéo » sans pénalité.</p>
+</div>
+</main>
+</div>
+<footer>Images et bandes-annonces fournies par leurs plateformes d'origine, métadonnées <a href="https://anilist.co/" target="_blank" rel="noopener noreferrer">AniList</a> ou <a href="https://jikan.moe/" target="_blank" rel="noopener noreferrer">Jikan</a>. Mini-jeu indépendant · Aucune vidéo enregistrée sur ce site.</footer>
+<script>
+(function(){
+"use strict";
+var API="https://graphql.anilist.co";
+var CACHE_KEY="animedle-anime-media-v2";
+var STATE_KEY="animedle-anime-mystery-v1";
+var MAX_AGE=7*24*60*60*1000;
+var $=function(id){return document.getElementById(id);};
+var anime=[], active="image", currentlyPlaying=false, loadedVideo="";
+var makeState=function(){return {round:0,question:null,bag:[],last:null,hints:0,result:null,wins:0,streak:0,best:0};};
+function loadStates(){
+  try{
+    var d=JSON.parse(localStorage.getItem(STATE_KEY));
+    if(d&&d.image&&d.video)return {image:Object.assign(makeState(),d.image),video:Object.assign(makeState(),d.video)};
+  }catch(e){}
+  return {image:makeState(),video:makeState()};
+}
+var states=loadStates();
+function save(){try{localStorage.setItem(STATE_KEY,JSON.stringify(states));}catch(e){}}
+function shuffle(array){
+  var a=array.slice();
+  for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=a[i];a[i]=a[j];a[j]=x;}
+  return a;
+}
+function cleanTitle(str){return String(str||"").trim().replace(/\s+/g," ");}
+function validYoutube(id){return typeof id==="string"&&/^[\w-]{11}$/.test(id);}
+function normalizeAniList(m){
+  var title=cleanTitle(m.title&&(m.title.english||m.title.romaji));
+  var trailer=m.trailer||{};
+  return {id:String(m.id),title:title,year:m.seasonYear||null,genres:Array.isArray(m.genres)?m.genres:[],
+    img:(validYoutube(trailer.id)&&trailer.thumbnail)||m.bannerImage||(m.coverImage&&(m.coverImage.extraLarge||m.coverImage.large))||"",
+    poster:(m.coverImage&&(m.coverImage.extraLarge||m.coverImage.large))||"",
+    video:trailer.site&&trailer.site.toLowerCase()==="youtube"&&validYoutube(trailer.id)?trailer.id:null};
+}
+function normalizeJikan(m){
+  var trailer=m.trailer||{}, images=m.images||{}, pic=(images.webp||images.jpg||{});
+  return {id:"mal"+m.mal_id,title:cleanTitle(m.title_english||m.title),year:m.year||(m.aired&&m.aired.prop&&m.aired.prop.from&&m.aired.prop.from.year)||null,
+    genres:Array.isArray(m.genres)?m.genres.map(function(g){return g.name;}):[],
+    img:(validYoutube(trailer.youtube_id)&&trailer.images&&(trailer.images.maximum_image_url||trailer.images.large_image_url))||pic.large_image_url||pic.image_url||"",
+    poster:pic.large_image_url||pic.image_url||"",
+    video:validYoutube(trailer.youtube_id)?trailer.youtube_id:null};
+}
+var query="query($page:Int){Page(page:$page,perPage:50){media(type:ANIME,sort:POPULARITY_DESC,isAdult:false){id title{english romaji} bannerImage coverImage{extraLarge large} trailer{id site thumbnail} genres seasonYear}}}";
+async function fromAniList(){
+  var pages=[];
+  for(var p=1;p<=3;p++){
+    var controller=new AbortController();
+    var timer=setTimeout(function(){controller.abort();},11000);
+    try{
+      var res=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({query:query,variables:{page:p}}),signal:controller.signal});
+      if(!res.ok)throw new Error("Service AniList "+res.status);
+      var body=await res.json();
+      if(body.errors||!body.data||!body.data.Page)throw new Error("Réponse AniList incorrecte");
+      pages=pages.concat(body.data.Page.media.map(normalizeAniList));
+    }finally{clearTimeout(timer);}
+  }
+  return pages;
+}
+async function fromJikan(){
+  var pages=[];
+  for(var p=1;p<=3;p++){
+    var ctrl=new AbortController();
+    var timer=setTimeout(function(){ctrl.abort();},11000);
+    try{
+      var res=await fetch("https://api.jikan.moe/v4/top/anime?filter=bypopularity&limit=25&page="+p,{signal:ctrl.signal});
+      if(!res.ok)throw new Error("Service Jikan "+res.status);
+      var data=await res.json();
+      pages=pages.concat((data.data||[]).filter(function(m){return !m.rating||!m.rating.startsWith("Rx");}).map(normalizeJikan));
+    }finally{clearTimeout(timer);}
+    if(p<3)await new Promise(function(resolve){setTimeout(resolve,550);});
+  }
+  return pages;
+}
+function sanitize(items){
+  var seen=new Set();
+  return items.filter(function(m){
+    if(!m.id||!m.title||!m.img||seen.has(m.title.toLowerCase())||!/^https:\/\//.test(m.img))return false;
+    if(m.genres.some(function(g){return ["ecchi","hentai","erotica"].includes(String(g).toLowerCase());}))return false;
+    seen.add(m.title.toLowerCase());
+    return true;
+  });
+}
+async function getData(force){
+  if(!force){
+    try{
+      var cache=JSON.parse(localStorage.getItem(CACHE_KEY));
+      if(cache&&Date.now()-cache.at<MAX_AGE&&Array.isArray(cache.items)&&cache.items.length>=30)return sanitize(cache.items);
+    }catch(e){}
+  }
+  var result=[];
+  try{result=sanitize(await fromAniList());}
+  catch(e){try{result=sanitize(await fromJikan());}catch(e2){throw new Error("Impossible de charger les images et les bandes-annonces pour le moment. Vérifie ta connexion, puis réessaie.");}}
+  if(result.length<20)throw new Error("Pas assez d'animés disponibles pour créer des parties.");
+  try{localStorage.setItem(CACHE_KEY,JSON.stringify({at:Date.now(),items:result}));}catch(e){}
+  return result;
+}
+function pool(mode){return anime.filter(function(a){return !!a.img&&(mode!=="video"||validYoutube(a.video));});}
+function pickOptions(target){
+  var peers=anime.filter(function(a){return a.id!==target.id;});
+  peers.sort(function(a,b){
+    var aa=a.genres.filter(function(g){return target.genres.includes(g);}).length;
+    var bb=b.genres.filter(function(g){return target.genres.includes(g);}).length;
+    var da=Math.abs((a.year||2018)-(target.year||2018));
+    var db=Math.abs((b.year||2018)-(target.year||2018));
+    return (bb-aa)||da-db;
+  });
+  var candidates=shuffle(peers.slice(0,Math.min(peers.length,27))).slice(0,3);
+  if(candidates.length<3)candidates=shuffle(peers).slice(0,3);
+  return shuffle([target].concat(candidates)).map(function(x){return x.id;});
+}
+function find(id){return anime.find(function(a){return a.id===id;});}
+function state(){return states[active];}
+function nextRound(mode){
+  var s=states[mode], all=pool(mode).map(function(a){return a.id;});
+  s.bag=s.bag.filter(function(id){return all.includes(id);});
+  if(!s.bag.length){
+    s.bag=shuffle(all);
+    if(s.bag.length>1&&s.bag[s.bag.length-1]===s.last){var last=s.bag.length-1;var old=s.bag[0];s.bag[0]=s.bag[last];s.bag[last]=old;}
+  }
+  var id=s.bag.pop(), target=find(id);
+  s.last=id;
+  s.question={id:id,options:pickOptions(target)};
+  s.hints=0;s.result=null;s.round++;
+  save();
+}
+function ensureRound(mode){
+  var s=states[mode], p=pool(mode);
+  if(!p.length)return false;
+  if(!s.question||!find(s.question.id)||!p.some(function(a){return a.id===s.question.id;})||!Array.isArray(s.question.options)||s.question.options.length!==4||s.question.options.some(function(id){return !find(id);}))nextRound(mode);
+  return true;
+}
+function changeMode(mode){
+  if(!ensureRound(mode)){showError("Il n'y a pas assez de vidéos intégrables. Essaie le mode Image mystère.");return;}
+  active=mode;currentlyPlaying=false;loadedVideo="";
+  $("modeImage").setAttribute("aria-selected",String(mode==="image"));
+  $("modeVideo").setAttribute("aria-selected",String(mode==="video"));
+  render();
+}
+function statusInfo(){
+  var s=state(), target=find(s.question.id);
+  return {s:s,target:target,finished:!!s.result};
+}
+function showError(msg){
+  $("loading").hidden=false;
+  $("loading").replaceChildren(document.createTextNode(msg));
+  var retry=document.createElement("button");retry.type="button";retry.className="retry";retry.textContent="Réessayer le chargement";
+  retry.addEventListener("click",initialize);
+  $("loading").append(document.createElement("br"),retry);
+  $("game").hidden=true;
+}
+function setPicture(a){
+  var pic=$("picture");
+  pic.onerror=function(){if(pic.src!==a.poster&&a.poster)pic.src=a.poster;};
+  pic.src=a.img;
+}
+function renderMedia(target,finished,hint){
+  var m=$("media");
+  m.dataset.hint=String(hint);
+  m.dataset.revealed=String(finished);
+  $("film").hidden=active!=="video";
+  $("changeVideo").hidden=active!=="video"||finished;
+  $("playWrap").hidden=active!=="video"||currentlyPlaying;
+  $("corner").textContent=finished?"RÉPONSE RÉVÉLÉE":active==="video"?"VIDÉO MYSTÈRE":"IMAGE MYSTÈRE";
+  var key=active+":"+target.id;
+  if(m.dataset.key!==key){
+    m.dataset.key=key;
+    var old=m.querySelector("iframe");
+    if(old)old.remove();
+    currentlyPlaying=false;loadedVideo="";
+    $("playWrap").hidden=active!=="video";
+    setPicture(target);
+  }
+  if(active!=="video"){
+    var frame=m.querySelector("iframe");if(frame)frame.remove();
+    currentlyPlaying=false;loadedVideo="";
+  }
+}
+function renderChoices(target,finished){
+  var s=state(), parent=$("choices");parent.replaceChildren();
+  s.question.options.forEach(function(id,i){
+    var item=find(id);
+    if(!item)return;
+    var b=document.createElement("button");
+    b.type="button";b.className="choice";
+    if(finished&&id===target.id)b.classList.add("correct");
+    else if(finished&&id===s.result)b.classList.add("wrong");
+    b.disabled=finished;
+    var name=document.createElement("span");name.textContent=item.title;
+    var key=document.createElement("b");key.textContent=["A","B","C","D"][i];
+    b.append(name,key);
+    b.addEventListener("click",function(){answer(id);});
+    parent.append(b);
+  });
+}
+function render(){
+  if(!state().question)return;
+  var x=statusInfo(),s=x.s,tar=x.target;
+  $("loading").hidden=true;$("game").hidden=false;
+  $("streak").textContent=s.streak;$("wins").textContent=s.wins;$("best").textContent=s.best;
+  $("round").textContent="PARTIE #"+String(s.round).padStart(3,"0");
+  $("modeLabel").textContent=(active==="image"?"IMAGE":"VIDÉO")+" · "+(s.result?"TERMINÉE":"NIVEAU "+(s.hints+1));
+  $("hintBtn").disabled=!!s.result||s.hints>=2;
+  $("hintCounter").textContent=s.hints+" / 2 indices";
+  var clue=[];
+  if(s.hints>=1)clue.push("Année : "+(tar.year||"inconnue"));
+  if(s.hints>=2)clue.push("Genre : "+(tar.genres[0]||"mystère"));
+  $("hintText").textContent=clue.join(" · ")||" ";
+  renderMedia(tar,!!s.result,s.hints);
+  renderChoices(tar,!!s.result);
+  $("result").hidden=!s.result;
+  $("skip").hidden=!!s.result;
+  if(s.result){
+    var win=s.result===tar.id;
+    $("result").className="result"+(win?"":" lose");
+    $("resultTitle").textContent=win?"Bien joué ! ✦":"Raté !";
+    $("resultText").textContent=win?"C'était bien "+tar.title+". Série actuelle : "+s.streak+".":"C'était "+tar.title+". Ta série de victoires revient à zéro.";
+  }
+}
+function playTrailer(){
+  if(active!=="video"||currentlyPlaying||!state().question)return;
+  var target=find(state().question.id);
+  if(!validYoutube(target.video))return;
+  var m=$("media"),frame=document.createElement("iframe");
+  frame.title="Bande-annonce floutée";
+  frame.setAttribute("allow","autoplay; encrypted-media; picture-in-picture");
+  frame.setAttribute("referrerpolicy","strict-origin-when-cross-origin");
+  frame.src="https://www.youtube-nocookie.com/embed/"+target.video+"?autoplay=1&mute=1&controls=0&playsinline=1&rel=0&loop=1&playlist="+target.video;
+  m.append(frame);
+  currentlyPlaying=true;loadedVideo=target.video;
+  $("playWrap").hidden=true;
+}
+function answer(id){
+  var s=state();
+  if(s.result)return;
+  if(!s.question.options.includes(id))return;
+  s.result=id;
+  var win=s.question.id===id;
+  if(win){s.wins++;s.streak++;s.best=Math.max(s.best,s.streak);}
+  else{s.streak=0;}
+  save();render();
+}
+function abandon(){
+  var s=state();if(s.result)return;
+  s.result="__ABANDON__";s.streak=0;
+  save();render();
+}
+function freeChangeVideo(){
+  if(active!=="video")return;
+  nextRound("video");currentlyPlaying=false;loadedVideo="";
+  render();
+}
+async function initialize(){
+  $("loading").textContent="Chargement des animés…";$("loading").hidden=false;
+  $("game").hidden=true;
+  try{
+    anime=await getData(false);
+    ensureRound("image");
+    if(pool("video").length>=4)ensureRound("video");
+    $("modeVideo").disabled=pool("video").length<4;
+    changeMode(pool(active).length<4?"image":active);
+  }catch(err){showError(err&&err.message?err.message:"Le chargement a échoué.");}
+}
+$("modeImage").addEventListener("click",function(){if(active!=="image")changeMode("image");});
+$("modeVideo").addEventListener("click",function(){if(active!=="video")changeMode("video");});
+$("hintBtn").addEventListener("click",function(){var s=state();if(s.result||s.hints>=2)return;s.hints++;save();render();});
+$("play").addEventListener("click",playTrailer);
+$("changeVideo").addEventListener("click",freeChangeVideo);
+$("skip").addEventListener("click",abandon);
+$("next").addEventListener("click",function(){nextRound(active);currentlyPlaying=false;loadedVideo="";render();});
+document.addEventListener("keydown",function(e){
+  if(e.ctrlKey||e.metaKey||e.altKey||e.repeat||e.target.closest("button,a,input,textarea"))return;
+  if(["1","2","3","4"].includes(e.key)&&!$("game").hidden){
+    var id=state().question&&state().question.options[Number(e.key)-1];
+    if(id)answer(id);
+  }
+});
+initialize();
+})();
+</script>
+</body>
+</html>
