@@ -138,7 +138,7 @@ var CACHE_KEY="animedle-anime-media-v2";
 var STATE_KEY="animedle-anime-mystery-v1";
 var MAX_AGE=7*24*60*60*1000;
 var $=function(id){return document.getElementById(id);};
-var anime=[], active="image", currentlyPlaying=false, loadedVideo="";
+var anime=[], active=window.location.hash==="#video"?"video":"image", currentlyPlaying=false, loadedVideo="";
 var makeState=function(){return {round:0,question:null,bag:[],last:null,hints:0,result:null,wins:0,streak:0,best:0};};
 function loadStates(){
   try{
