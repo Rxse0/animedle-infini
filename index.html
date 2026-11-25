@@ -37,6 +37,22 @@ dialog{padding:0;max-width:560px;width:calc(100% - 28px);max-height:calc(100dvh 
 @media(min-width:611px) and (max-width:850px){.universe-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tokyo-card{grid-column:1/-1}}
 @media(max-width:610px){.universe-grid{grid-template-columns:1fr}.tokyo-card .card-title{font-size:42px}.tokyo-card .card-title span{font-size:38px}}
 
+
+/* Mode bonus Wordle : design noir minimaliste */
+.wordle-launch{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:16px;padding:20px 25px;border-radius:15px;border:1px solid #35383b;background:linear-gradient(110deg,#101113 8%,#151b18 100%);transition:border-color .18s,transform .18s,background .18s}
+.wordle-launch:hover{transform:translateY(-2px);border-color:#779982;background:linear-gradient(110deg,#17191c,#1e2822)}
+.wordle-launch:focus-visible{outline-color:#c6d9cb}
+.wordle-launch-content{display:flex;flex-direction:column;gap:3px}
+.wordle-launch-sub{font-size:10px;color:#97b2a2;letter-spacing:1.7px;font-weight:800}
+.wordle-launch-title{font-size:34px;font-family:'Barlow Condensed',Impact,sans-serif;letter-spacing:1px;font-weight:900;color:#f5f5f5;line-height:1.1}
+.wordle-launch-title em{font-style:normal;color:#9cc3a8}
+.wordle-launch-desc{color:#aaaeb2;font-size:12px}
+.wordle-launch-action{display:flex;align-items:center;gap:16px}
+.wordle-launch-tiles{display:flex;gap:4px}
+.wordle-launch-tiles span{display:grid;place-items:center;width:33px;height:35px;font-weight:900;font-size:16px;border-radius:5px;color:#fff;background:#29302b;border:1px solid #4b6052}
+.wordle-launch-tiles span:nth-child(2),.wordle-launch-tiles span:nth-child(4){background:#477e62;border-color:#477e62}
+.wordle-launch-arrow{display:grid;place-items:center;background:#ffffff15;color:#f6f6f6;border-radius:100%;font-size:19px;width:37px;height:37px}
+@media(max-width:610px){.wordle-launch{padding:19px;gap:10px}.wordle-launch-title{font-size:30px}.wordle-launch-desc{font-size:11px}.wordle-launch-tiles{display:none}.wordle-launch-arrow{width:33px;height:33px}}
 </style>
   
   
@@ -76,6 +92,17 @@ dialog{padding:0;max-width:560px;width:calc(100% - 28px);max-height:calc(100dvh 
             <div class="universe-card-content"><span class="card-subtitle">DANS L'OMBRE DE TOKYO</span><span class="card-title">TOKYO <span>GHOUL</span></span><span class="card-description">Goules, Quinx et kagunes</span><span class="card-action">JOUER À TOKYO GHOUL <span>↗</span></span></div>
           </button>
         </div>
+        <a href="./wordle.html" class="wordle-launch" aria-label="Jouer au Wordle français infini">
+          <span class="wordle-launch-content">
+            <span class="wordle-launch-sub">NOUVEAU · JEU DE MOTS</span>
+            <span class="wordle-launch-title">WORDLE <em>∞</em></span>
+            <span class="wordle-launch-desc">5 lettres · 6 essais · 1352 mots à trouver · série de victoires</span>
+          </span>
+          <span class="wordle-launch-action">
+            <span class="wordle-launch-tiles" aria-hidden="true"><span>M</span><span>O</span><span>T</span><span>S</span></span>
+            <span class="wordle-launch-arrow" aria-hidden="true">↗</span>
+          </span>
+        </a>
       </section>
 
       <section class="game-area" id="gameArea">
